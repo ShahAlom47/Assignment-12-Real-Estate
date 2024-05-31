@@ -2,12 +2,13 @@
 import Headroom from "react-headroom";
 import { IoMoon } from "react-icons/io5";
 import { MdDashboard, MdSunny } from "react-icons/md";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useTheme from "../../CustomHocks/useTheme";
 import useUser from "../../CustomHocks/useUser";
 import { LuLogOut } from "react-icons/lu";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import logo from '../../assets/Logo/logo.jpg'
 
 
 const Navbar = () => {
@@ -22,6 +23,7 @@ const Navbar = () => {
             })
     }
 
+    
 
     const nav = <>
         <NavLink><li>HOME</li></NavLink>
@@ -31,8 +33,8 @@ const Navbar = () => {
     return (
         <Headroom>
             <ToastContainer></ToastContainer>
-            <nav className=" bg-[#9e924fa5]">
-                <div className="navbar  max-w">
+            <nav className=" bg-[#ffffff]">
+                <div className="navbar  max-w border-b-2">
                     <div className="navbar-start">
                         <div className="dropdown">
                             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -42,7 +44,7 @@ const Navbar = () => {
                                 {nav}
                             </ul>
                         </div>
-                        <a className="btn btn-ghost text-xl">daisyUI</a>
+                        <Link to={'/'} className="w-20 h-10   px-0 flex items-center overflow-hidden"><img className="w-full h-full" src={logo} alt="" /></Link>
                     </div>
                     <div className="navbar-end  lg:flex">
                         <ul className="menu menu-horizontal px-1 lg:flex items-center py-0 hidden">
