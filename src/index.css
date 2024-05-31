@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.max-w{
+  max-width: 1240px;
+  margin: auto;
+}
+
+nav li{
+  font-weight: 600;
+  padding: 4px 8px;
+  margin: 2px;
+  border-radius: 3px; 
+}
+nav li:hover{ 
+background-color: rgba(0, 0, 0, 0.436);
+color: white;
+}
+nav li:active{ 
+transform: scale(0.94);
+}
+.active-btn{
+  transform: scale(0.94);
+  border-radius: 3px;
+  padding: 4px 8px;
+  
+}
+
+/* HeadRoom style */
+
+.headroom--unfixed,
+.headroom--unpinned,
+.headroom--pinned {
+  transition: transform 1s ease-in-out;
+}
+
+.headroom--unpinned {
+  transform: translateY(-100%);
+}
+
