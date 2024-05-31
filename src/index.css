@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+  box-sizing:  border-box;
+}
+
 .max-w{
   max-width: 1240px;
   margin: auto;
