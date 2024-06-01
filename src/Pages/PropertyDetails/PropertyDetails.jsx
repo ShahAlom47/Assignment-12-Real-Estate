@@ -14,16 +14,21 @@ import { MdAddChart } from "react-icons/md";
 import useUser from "../../CustomHocks/useUser";
 import { useEffect, useState } from "react";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import useAxios from "../../CustomHocks/useAxios";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const PropertyDetails = () => {
     const { id } = useParams()
     const { user } = useUser();
-    const [reviewErr, setReviewErr] = useState(true)
-    const axiosPublic = useAxiosPublic()
-    const location = useLocation()
+    const [reviewErr, setReviewErr] = useState(true);
+    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxios();
+    const location = useLocation();
 
 
-    const { data, isLoading,error } = useQuery({
+    const { data, isLoading, error } = useQuery({
         queryKey: ['propertyDetails'],
         queryFn: async () => {
             const res = await axiosPublic.get(`/property/${id}`)
@@ -43,27 +48,38 @@ const PropertyDetails = () => {
         }
         document.getElementById('my_modal_5').showModal()
     }
-    const handelReviewForm =(e)=>{
+    const handelReviewForm = async (e) => {
         e.preventDefault()
-        const form = e.target ;
-        const  review= form.review.value;
+        const form = e.target;
+        const review = form.review.value;
         const rating = form.rating.value;
-        const reviewData= {
-            review,rating,
-            property_title:data.title,
-            property_id:data._id,
-            agent_photo:data.agent_photo ,
-            agent_name:data.agent_name,
-            user_name:user.displayName,
-            user_photo:user.photoURL,
-            user_email:user.email,
-            date : new Date().toISOString(),
-        
+        const reviewData = {
+            review, rating,
+            property_title: data.title,
+            property_id: data._id,
+            agent_photo: data.agent_photo,
+            agent_name: data.agent_name,
+            user_name: user.displayName,
+            user_photo: user.photoURL,
+            user_email: user.email,
+            date: new Date().toISOString(),
+
         }
-        console.log(reviewData);
+        // console.log(reviewData);
+        const res = await axiosSecure.post('/addReview', { reviewData })
+        console.log(res.data);
+
+        if(res.data.insertedId){
+            form.reset()
+            toast.success('Review Completed')
+            document.getElementById('my_modal_5').close();
+        }
+
 
 
     }
+
+
 
     if (isLoading) {
         return <LoadingRing></LoadingRing>
@@ -76,7 +92,7 @@ const PropertyDetails = () => {
             <Helmet>
                 <title>Honest | Details Page </title>
             </Helmet>
-
+            <ToastContainer />
             <div className=" h-[512px] flex gap-5 my-5">
                 <div className="h-[512px] ">
                     <img className=" h-full" src={data.property_image} alt="" />
