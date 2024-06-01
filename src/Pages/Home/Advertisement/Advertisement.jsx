@@ -1,55 +1,101 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
 import { CiLocationOn } from 'react-icons/ci';
-import { FaBath, FaLocationArrow } from 'react-icons/fa';
+import { FaBath, FaLocationArrow, FaStar } from 'react-icons/fa';
 import { IoBedOutline } from 'react-icons/io5';
 import { PiBuildingsLight } from 'react-icons/pi';
 import useAxiosPublic from '../../../CustomHocks/useAxiosPublic';
+import LoadingRing from '../../../SharedComponents/LoadingRing/LoadingRing';
+import { Link } from 'react-router-dom';
+import { GoStar } from 'react-icons/go';
+import 'react-tooltip/dist/react-tooltip.css'
+import { Tooltip } from 'react-tooltip'
 
 const Advertisement = () => {
-    const axiosPublic=useAxiosPublic()
-const {data}=useQuery({
-    queryKey:['property'],
-    queryFn: async()=>{
-        const res= await axiosPublic.get('/property')
-        return res.data
+    const [hoveredIndex, setHoveredIndex] = useState(null);
+    const axiosPublic = useAxiosPublic()
+    const { data } = useQuery({
+        queryKey: ['property'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/property')
+            return res.data
+        }
+    })
+
+    function handleMouseOver(index) {
+        setHoveredIndex(index);
     }
-})
 
+    function handleMouseOut() {
+        setHoveredIndex(null);
+    }
 
-console.log(data);
 
 
     return (
         <div className='max-w py-10'>
             <div>
-                <h1 className=' text-4xl ml-5 font-bold'>Our choice of <br />
+                <h1 className=' text-4xl ml-5 font-semibold'>Our choice of <br />
                     popular Property</h1>
             </div>
+            <Tooltip id="my-tooltip" className='z-20' />
+            <div className=' my-5 grid gap-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1  '>
 
-            <div className=' my-5'>
-                <div className="card card-compact w-96 bg-base-100 shadow-xl rounded-md">
-                    <figure><img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                    <div className="card-body">
-                        <div className='flex items-center'>
-                        <CiLocationOn />
-                        <p className="font-semibold">Countryside, OR</p>
-                        </div>
-                        <h2 className="card-title">Shoes!</h2>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
-                        <div className="divider"></div> 
-                        <div className="card-actions justify-between">
-                          <div>
-                            <p className='text2xl font-bold'>12000$</p>
-                          </div>
-                          <div>
-                            <div className='flex items-center'><PiBuildingsLight /> 1888 sft</div>
-                            <div className='flex items-center'><IoBedOutline /> 5</div>
-                            <div className='flex items-center'><FaBath /> 3</div>
-                          </div>
+                {
+                    data ? data.map((card, idx) => <div key={card._id} className={`card card-compact bg-base-100 shadow-xl rounded-md `}
+                        onMouseOver={() => handleMouseOver(idx)}
+                        onMouseOut={handleMouseOut}
+                    >
+                        {/* ${idx % 4 === 0 || idx % 4 === 3 ? 'col-span-4 ' : 'col-span-2 '} */}
+                        <figure className='relative'>
+                            <img
+                                style={{ transition: 'transform 0.9s ease', transform: hoveredIndex === idx ? 'scale(1.10)' : 'scale(1)' }}
+                                src={card.property_image} alt="Shoes" />
+                            <div
+                              style={{ transition: 'transform 0.4s ease', transform: hoveredIndex === idx ? 'translateY(-125%)' : 'translateY(-0%)' }}
+                             className="z-10 absolute flex flex-row-reverse items-center -bottom-10 left-3 ">
+                                <Link ><p className=' z-0 -ml-1 bg-white bg-opacity-50 backdrop-filter backdrop-blur-md  px-2 rounded-r-sm font-semibold hover:text-red-700 text-black'>{card.agent_name}</p></Link>
+                                <img className='z-10 h-10 w-10 rounded-full border-2 ' src={card.agent_photo} alt="" />
+                            </div>
+                            <div
+                              style={{ transition: 'transform 0.4s ease', transform: hoveredIndex === idx ? 'translateY(165%)' : 'translateY(-12%)' }}
+                             className="bg-white bg-opacity-50 backdrop-filter backdrop-blur-md rounded-l-sm   p-1 pl-3  pr-8 text-lg z-10 absolute flex  items-center -top-5 right-0 ">
+                                <Link ><p
+                                data-tooltip-id="my-tooltip" data-tooltip-content="add to wishlist"
+                                 className=' z-0 -ml-1   font-semibold hover:text-red-700 text-black'><GoStar /></p></Link>
+                               
+                            </div>
+                            <div
+                             className="bg-white bg-opacity-50 backdrop-filter backdrop-blur-md rounded-r-sm   p-1 pr-3  pl-8  z-10 absolute flex  items-center top-5 left-0 ">
+                             <Link ><p
+                               className=' z-0 -ml-1   font-semibold hover:text-red-700 text-black'>{card.verification_status}</p></Link>
+                               
+                            </div>
+                        </figure>
+                        <div className="card-body">
+                            <div className='flex items-center'>
+                                <CiLocationOn />
+                                <p className="font-semibold">{card.property_location}</p>
+                            </div>
+                            <h2 className="card-title">{card.title}</h2>
+                            <p>{card.description}</p>
+                            <div className="divider"></div>
+                            <div className="card-actions justify-between">
+                                <div>
+                                    <p className='text2xl font-bold'>{card.price_range}</p>
+                                </div>
+                                <div className=' flex items-center gap-4'>
+                                    <div className='flex items-center'><PiBuildingsLight /> {card.square_feet}</div>
+                                    <div className='flex items-center'><IoBedOutline /> {card.bedrooms}</div>
+                                    <div className='flex items-center'><FaBath />{card.bathrooms}</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                    ) : <LoadingRing></LoadingRing>
+                }
+
             </div>
         </div>
     );

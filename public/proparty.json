@@ -103,6 +103,28 @@
         "Two-Car Garage",
         "Community Park"
       ]
+    },
+    {
+      "title": "Cozy Cottage in the Countryside",
+      "description": "A charming cottage in a quiet and peaceful countryside setting.",
+      "price_range": "$400,000 - $450,000",
+      "agent_name": "Robert Johnson",
+      "agent_photo": "https://i.ibb.co/tJXhmQP/man.jpg",
+      "property_image": "https://i.ibb.co/6J8wxxS/steven-ungermann-a-RT5-UCf2-MYY-unsplash.jpg",
+      "property_location": "Countryside, OR",
+      "verification_status": "Pending",
+      "property_type": "Cottage",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "square_feet": 1800,
+      "year_built": 1995,
+      "amenities": [
+        "Fireplace",
+        "Large Backyard",
+        "Patio",
+        "Detached Garage"
+      ]
     }
+
   ]
   
