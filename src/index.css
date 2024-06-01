@@ -47,7 +47,7 @@ transform: scale(0.94);
 
 .title-t {
   position: relative;
-  display: inline-block;
+  display: flex;
 }
 
 .title-t::before {
