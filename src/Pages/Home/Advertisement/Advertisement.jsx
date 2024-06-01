@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { CiLocationOn } from 'react-icons/ci';
-import { FaBath, FaLocationArrow, FaStar } from 'react-icons/fa';
+import { FaBath,  } from 'react-icons/fa';
 import { IoBedOutline } from 'react-icons/io5';
 import { PiBuildingsLight } from 'react-icons/pi';
 import useAxiosPublic from '../../../CustomHocks/useAxiosPublic';
@@ -77,7 +77,7 @@ const Advertisement = () => {
                                 <CiLocationOn />
                                 <p className="font-semibold">{card.property_location}</p>
                             </div>
-                            <Link><h2 className="card-title title-t ">{card.title}</h2></Link>
+                            <Link to={`/details/${card._id}`}><h2 className="card-title title-t ">{card.title}</h2></Link>
                             <p>{card.description}</p>
                             <div className="divider my-2"></div>
                             <div className="card-actions justify-between">
