@@ -4,7 +4,7 @@ import useAxiosPublic from "../../CustomHocks/useAxiosPublic";
 import LoadingRing from "../../SharedComponents/LoadingRing/LoadingRing";
 import { PiBuildingsLight } from "react-icons/pi";
 import { IoBedOutline } from "react-icons/io5";
-import { FaArrowAltCircleRight, FaBath, FaMobile, FaVoicemail } from "react-icons/fa";
+import { FaArrowAltCircleRight, FaBath, FaMobile, FaStar, FaVoicemail } from "react-icons/fa";
 import { Helmet } from "react-helmet";
 import { CiShare2 } from "react-icons/ci";
 import 'react-tooltip/dist/react-tooltip.css'
@@ -35,6 +35,15 @@ const PropertyDetails = () => {
             return res.data
         }
     })
+    const { data: reviewData } = useQuery({
+        queryKey: ['reviewData'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/reviews/${id}`)
+            return res.data
+        }
+    })
+
+    console.log(reviewData);
     useEffect(() => {
         setReviewErr(false)
     }, [])
@@ -69,16 +78,15 @@ const PropertyDetails = () => {
         const res = await axiosSecure.post('/addReview', { reviewData })
         console.log(res.data);
 
-        if(res.data.insertedId){
+        if (res.data.insertedId) {
             form.reset()
             toast.success('Review Completed')
             document.getElementById('my_modal_5').close();
         }
-
-
-
     }
 
+    // const dateObject = new Date(ra);
+    // const formattedDateTime = dateObject.toLocaleString();
 
 
     if (isLoading) {
@@ -143,8 +151,8 @@ const PropertyDetails = () => {
                     </div>
 
 
-                    <div className=" border p-3">
-                        <div className=" flex justify-between border-b-2 pb-3">
+                    <div className=" border p-3 my-10">
+                        <div className=" flex justify-between border-b-2  pb-3">
                             <h1 className="text-xl font-semibold">Reviews</h1>
                             <div>
                                 <button onClick={handelReview} className="font-semibold flex items-center gap-1 title-t"><MdAddChart /> Add Review</button>
@@ -156,6 +164,27 @@ const PropertyDetails = () => {
                             </div>
                         </div>
                         <div className="">
+                            {
+                                reviewData?.map((data, index) => <div key={index} className=" ">
+
+                                    <div className=" my-6">
+                                        <div className="flex gap-3 bg-slate-400 rounded-l-full mb-2">
+                                            <img className="h-10 w-10 rounded-full" src={data.user_photo} alt="" />
+                                            <div className="">
+                                                <h1 className="font-medium">{data.user_name}</h1>
+                                                {[...Array(data.rating)].map((_, index) => (
+                                                    <FaStar className="text-xs" key={index}></FaStar>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p className="underline text-sm">{data.date}</p>
+                                            <p className=" text-gray-600">{data.review}</p>
+                                        </div>
+                                    </div>
+                                </div>)
+                            }
+
 
 
                         </div>
