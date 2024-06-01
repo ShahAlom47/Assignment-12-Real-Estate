@@ -31,10 +31,10 @@ const Navbar = () => {
         <NavLink><li>CONTACT US</li></NavLink>
     </>
     return (
-        <Headroom>
+        <Headroom className="z-[9999] sticky">
             <ToastContainer></ToastContainer>
-            <nav className=" bg-[#ffffff]">
-                <div className="navbar  max-w border-b-2">
+            <nav className=" bg-[#ffffff] z-[9999]">
+                <div className="navbar z-50 top-0   max-w border-b-2">
                     <div className="navbar-start">
                         <div className="dropdown">
                             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
