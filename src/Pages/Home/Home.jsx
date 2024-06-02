@@ -3,6 +3,7 @@ import Banner from "./Banner/Banner";
 import Advertisement from "./Advertisement/Advertisement";
 import ReviewSec from "./ReviewSec/ReviewSec";
 import Enquiry from "./Enquiry/Enquiry";
+import PerfectHome from "./PerfectHome/PerfectHome";
 
 
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
                 <Advertisement></Advertisement>
                 <Enquiry></Enquiry>
                 <ReviewSec></ReviewSec>
+                <PerfectHome></PerfectHome>
             </section>
             
         </div>

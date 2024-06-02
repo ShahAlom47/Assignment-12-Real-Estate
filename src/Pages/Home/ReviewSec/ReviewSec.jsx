@@ -64,7 +64,7 @@ const ReviewSec = () => {
     }
 
     return (
-        <div className=' bg-white '>
+        <div className=' '>
             <div className=' max-w p-12'>
                 <div className="flex justify-between">
                     <div className=' inline-block p-3 px-5 ml-3 ' style={{ boxShadow: '-15px 15px 7px -10px rgb(27, 67, 100)' }}>

@@ -41,7 +41,7 @@ const Enquiry = () => {
         <div className="p-10 bg-[url('https://i.ibb.co/p0qz08f/marvin-meyer-cjhu-XRt-RT0-Y-unsplash-1.jpg')] min-h-[500px]">
  <ToastContainer />
 
-            <div className="max-w grid lg:grid-cols-2 md:grid-cols-2">
+            <div className="max-w grid gap-8 lg:grid-cols-2 md:grid-cols-2">
                 <div className="text-white w-10/12 m-auto">
                     <h1 className=" text-4xl font-bold lg:text-7xl my-4">Discover a new <br /> way of living</h1>
                     <p className="">Experience a refreshing lifestyle with our latest innovation. Embrace modernity and comfort for a fulfilling living experience</p>
