@@ -49,7 +49,7 @@ const PropertyDetails = () => {
     }, [])
 
 
-    const handelReview = (id) => {
+    const handelReview = () => {
         setReviewErr(false)
         if (!user) {
             setReviewErr(true)
@@ -145,7 +145,7 @@ const PropertyDetails = () => {
                         <h1 className=" mb-2 text-xl font-semibold">Amenities</h1>
                         <div className=" grid grid-cols-2 gap-1">
                             {
-                                data.amenities.map((data, index) => <p className="flex items-center gap-2" key={index}><FaArrowAltCircleRight />{data}</p>)
+                                data?.amenities?.map((data, index) => <p className="flex items-center gap-2" key={index}><FaArrowAltCircleRight />{data}</p>)
                             }
                         </div>
                     </div>
@@ -249,7 +249,7 @@ const PropertyDetails = () => {
                         </div>
                         <p className="flex  justify-between border-b-2 border-t-2 mt-6 pb-1 mb-2 pr-4"> <span className="flex gap-2 items-center"><FaMobile /> Office Phone:</span> <span className=" font-semibold"> +0562566887</span></p>
                         <p className="flex  justify-between border-b-2   pb-1 mb-2 pr-4"> <span className="flex gap-2 items-center"><FaMobile /> Phone:</span> <span className=" font-semibold"> +0562596833</span></p>
-                        <p className="flex  justify-between border-b-2 pb-1 mb-2 pr-4"> <span className="flex gap-2 items-center"><FaVoicemail /> Email:</span> <span className=" font-semibold">{data.agent_name}@gmail.com</span></p>
+                        <p className="flex  justify-between border-b-2 pb-1 mb-2 pr-4"> <span className="flex gap-2 items-center"><FaVoicemail /> Email:</span> <span className=" font-semibold lowercase">{data.agent_name}@gmail.com</span></p>
                         <Link><button className=" btn rounded-sm my-3 bg-yellow-500 w-full border-none">View My Property </button></Link>
                     </div>
 

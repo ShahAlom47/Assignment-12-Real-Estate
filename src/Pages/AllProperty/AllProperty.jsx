@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../CustomHocks/useAxios";
 import PropertyCard from "../../SharedComponents/PropertyCard/PropertyCard";
-import { Link } from "react-router-dom";
 import LoadingRing from "../../SharedComponents/LoadingRing/LoadingRing";
 
 
