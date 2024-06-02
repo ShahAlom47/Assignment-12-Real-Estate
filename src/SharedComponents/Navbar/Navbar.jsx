@@ -27,6 +27,7 @@ const Navbar = () => {
 
     const nav = <>
         <NavLink><li>HOME</li></NavLink>
+        <NavLink to={'/allProperty'}><li>ALL PROPERTY</li></NavLink>
         <NavLink><li>ABOUT US</li></NavLink>
         <NavLink><li>CONTACT US</li></NavLink>
     </>

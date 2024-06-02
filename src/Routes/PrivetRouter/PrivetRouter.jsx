@@ -12,7 +12,7 @@ const PrivetRouter = ({ children }) => {
 
         return <LoadingRing></LoadingRing>
     }
-    if (!user) {
+    if (user) {
         return (
         <> { children } </>)
     }
