@@ -45,7 +45,7 @@ const Banner = () => {
     >
         <SwiperSlide>
             <div className='relative'>
-                <img className= 'h-[600px] gradient-overlay w-full rounded-lg' src={slide1} alt="" />
+                <img className= 'lg:h-[600px] gradient-overlay w-full rounded-lg' src={slide1} alt="" />
                 <div className="overlay absolute bottom-1 md:bottom-0 lg:bottom-0 left-0 z-40 lg:p-0 p-0 w-full h-full rounded-md" style={{ background: "linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0))" }}>
 
                 </div>
@@ -54,7 +54,7 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide>
             <div className='relative'>
-                <img className='h-[600px] w-full rounded-lg' src={slide2} alt="" />
+                <img className='lg:h-[600px] w-full rounded-lg' src={slide2} alt="" />
                 <div className="overlay absolute bottom-1 md:bottom-0 lg:bottom-0 left-0 z-40 lg:p-0 p-0 w-full h-full rounded-md" style={{ background: "linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0))" }}>
                     
 
@@ -64,7 +64,7 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide>
             <div className='relative'>
-                <img className='h-[600px] w-full rounded-lg' src={slide4} alt="" />
+                <img className='lg:h-[600px] w-full rounded-lg' src={slide4} alt="" />
                 <div className="overlay absolute bottom-1 md:bottom-0 lg:bottom-0 left-0 z-40 lg:p-0 p-0 w-full h-full rounded-md" style={{ background: "linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0))" }}>
                 
 
@@ -74,7 +74,7 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide>
             <div className='relative'>
-                <img className='h-[600px] w-full rounded-lg' src={slide3} alt="" />
+                <img className='lg:h-[600px] w-full rounded-lg' src={slide3} alt="" />
                 <div className="overlay absolute bottom-1 md:bottom-0 lg:bottom-0 left-0 z-40 lg:p-0 p-0 w-full h-full rounded-md" style={{ background: "linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0))" }}>
                   
 

@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 import { GoStar } from 'react-icons/go';
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
+import PropTypes from 'prop-types'
+
 
 
 const PropertyCard = ({card,idx}) => {
@@ -84,3 +86,9 @@ const PropertyCard = ({card,idx}) => {
 };
 
 export default PropertyCard;
+
+PropertyCard.propTypes = {
+    card: PropTypes.string.isRequired,
+    idx: PropTypes.number.isRequired,
+
+  };
