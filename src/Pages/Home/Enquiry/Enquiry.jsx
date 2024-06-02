@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form"
 import useUser from "../../../CustomHocks/useUser";
 import useAxiosPublic from "../../../CustomHocks/useAxiosPublic";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Enquiry = () => {
 
@@ -26,7 +28,10 @@ const Enquiry = () => {
         }
 
         const  res=await axiosPublic.post('/addEnquiry',enquiryData)
-
+        if(res?.data?.insertedId){
+          toast.success('Submitted successfully')
+            reset();
+        }
 
         console.log(res.data)
 
@@ -34,7 +39,7 @@ const Enquiry = () => {
 
     return (
         <div className="p-10 bg-[url('https://i.ibb.co/p0qz08f/marvin-meyer-cjhu-XRt-RT0-Y-unsplash-1.jpg')] min-h-[500px]">
-
+ <ToastContainer />
 
             <div className="max-w grid lg:grid-cols-2 md:grid-cols-2">
                 <div className="text-white w-10/12 m-auto">
