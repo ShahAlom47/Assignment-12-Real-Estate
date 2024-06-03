@@ -86,7 +86,7 @@ const DashBoard = () => {
 
             </div>
 
-            <div className="lg:flex-1 p-8 bg-gray-100">
+            <div className="lg:flex-1 py- bg-gray-100">
                 <Outlet></Outlet>
 
             </div>

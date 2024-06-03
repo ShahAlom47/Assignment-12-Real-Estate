@@ -10,11 +10,13 @@ import { GoStar } from 'react-icons/go';
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
 import PropTypes from 'prop-types'
+import useAddWish from '../../CustomHocks/useAddWish';
 
 
 
 const PropertyCard = ({card,idx}) => {
     const [hoveredIndex, setHoveredIndex] = useState(null);
+    const [addWishList]=useAddWish()
 
     function handleMouseOver(index) {
         setHoveredIndex(index);
@@ -45,6 +47,7 @@ const PropertyCard = ({card,idx}) => {
                                 style={{ transition: 'transform 0.4s ease', transform: hoveredIndex === idx ? 'translateY(165%)' : 'translateY(-12%)' }}
                                 className="bg-white bg-opacity-50 backdrop-filter backdrop-blur-md rounded-l-sm   p-1 pl-3  pr-8 text-lg z-10 absolute flex  items-center -top-5 right-0 ">
                                 <Link ><p
+                                onClick={()=>addWishList(card)}
                                     data-tooltip-id="my-tooltip" data-tooltip-content="add to wishlist"
                                     className=' z-0 -ml-1   font-semibold hover:text-red-700 text-black'><GoStar /></p></Link>
 
