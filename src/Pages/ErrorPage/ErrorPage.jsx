@@ -29,7 +29,7 @@ export default function ErrorPage({ btn }) {
           </p>
          {
           btn?'': <div className=" flex gap-5 items-center justify-center">
-          <button onClick={() => navigate(-1)} className="btn  btn-sm  my-3 "> <FaArrowLeft /> Back </button>
+          <button onClick={() => navigate(-1)} className="btn  btn-sm  my-3  "> <FaArrowLeft /> Back </button>
           <button onClick={() => navigate('/')} className="btn  btn-sm  my-3 "> Home</button>
         </div>
          }

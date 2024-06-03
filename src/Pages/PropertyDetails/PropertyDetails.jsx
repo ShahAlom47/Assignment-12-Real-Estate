@@ -35,7 +35,7 @@ const PropertyDetails = () => {
             return res.data
         }
     })
-    const { data: reviewData } = useQuery({
+    const {refetch, data: reviewData } = useQuery({
         queryKey: ['reviewData'],
         queryFn: async () => {
             const res = await axiosPublic.get(`/reviews/${id}`)
@@ -81,6 +81,7 @@ const PropertyDetails = () => {
         if (res.data.insertedId) {
             form.reset()
             toast.success('Review Completed')
+            refetch()
             document.getElementById('my_modal_5').close();
         }
     }

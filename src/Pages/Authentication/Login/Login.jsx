@@ -98,7 +98,7 @@ const Login = () => {
 
             </div>
             <div className="md:w-1/2 lg:w-1/2">
-                <div className=" w-11/12 m-auto bg-white rounded-md p-5 shadow-md shadow-black">
+                <div className=" lg:w-11/12 m-auto bg-white rounded-md p-5 shadow-md shadow-black">
                     <h1 className="text-3xl font-bold text-center pb-3 border-b-4 rounded-full">Login</h1>
                     <form onSubmit={handleSubmit(onSubmit)} className="mt-4 flex gap-3 flex-col items-center">
                       
