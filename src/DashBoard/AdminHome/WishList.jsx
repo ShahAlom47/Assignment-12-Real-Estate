@@ -67,7 +67,7 @@ const WishList = () => {
             {
                 isLoading ? <LoadingRing></LoadingRing> : <div className="space-y-3 my-5">
                     {
-                        data?.map((wish, index) => <div key={wish._id}>
+                        data?.map((wish) => <div key={wish._id}>
 
                             <div className="card card-side bg-base-100 shadow-xl flex flex-col lg:flex-row md:flex-row">
                                 <figure className="lg:w-4/12 md:w-4/12 "><img src={wish.property_image} alt="Movie" /></figure>
@@ -87,7 +87,7 @@ const WishList = () => {
                                       <div className=" flex justify-between gap-3 items-end">
                                       <Link to={`/details/${wish.property_id}`}><button className="btn btn-sm   rounded-sm border border-yellow-600">Details</button></Link>
                                       
-                                      <Link><button className="btn btn-sm border  rounded-sm border-yellow-600">Make an offer</button></Link>
+                                      <Link to={`/dashBoard/makeOffer/${wish.property_id}`}><button className="btn btn-sm border  rounded-sm border-yellow-600">Make an offer</button></Link>
                                       <button onClick={()=>handelDelete(wish._id) } className="btn btn-sm border  rounded-sm border-red-500">Delete</button>
                                       </div>
                                     </div>
