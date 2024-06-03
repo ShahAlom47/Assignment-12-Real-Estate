@@ -7,7 +7,7 @@ const useUserRole = () => {
     const axiosSecure=useAxios()
     const {user}=useUser()
 
-    console.log(user);
+   
 
     const { data, error, isLoading, refetch } = useQuery({
         queryKey: ['userRoles', user?.email],

@@ -2,9 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../CustomHocks/useAxios";
 import useUser from "../../CustomHocks/useUser";
 import LoadingRing from "../../SharedComponents/LoadingRing/LoadingRing";
-import { FaMapLocation } from "react-icons/fa6";
+
 import { CiLocationOn } from "react-icons/ci";
 import { Link } from "react-router-dom";
+
+
+import Swal from "sweetalert2";
 
 
 const WishList = () => {
@@ -13,7 +16,7 @@ const WishList = () => {
 
     const axiosSecure = useAxios()
 
-    const { data, isLoading } = useQuery({
+    const { data, isLoading ,refetch} = useQuery({
         queryKey: ['userWishList'],
         queryFn: async () => {
 
@@ -22,7 +25,39 @@ const WishList = () => {
         }
     })
 
-    console.log(data);
+
+    const handelDelete =async(id)=>{
+
+
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then(async(result) => {
+            if (result.isConfirmed) {
+                const res= await axiosSecure.delete(`/wishList/delete/${id}`)
+
+                console.log(res.data.deletedCount);
+                if(res.data.deletedCount){
+                    refetch()
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your property has been deleted.",
+                        icon: "success"
+                      });
+                   
+                }
+            }
+          });
+      
+    
+    }
+
     return (
         <div className=" lg:p-10 md:p-7 p-3">
             <div className=" border-b-2 pb-4">
@@ -53,7 +88,7 @@ const WishList = () => {
                                       <Link to={`/details/${wish.property_id}`}><button className="btn btn-sm   rounded-sm border border-yellow-600">Details</button></Link>
                                       
                                       <Link><button className="btn btn-sm border  rounded-sm border-yellow-600">Make an offer</button></Link>
-                                      <Link><button className="btn btn-sm border  rounded-sm border-red-500">Delete</button></Link>
+                                      <button onClick={()=>handelDelete(wish._id) } className="btn btn-sm border  rounded-sm border-red-500">Delete</button>
                                       </div>
                                     </div>
                                 </div>

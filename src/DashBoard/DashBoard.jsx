@@ -1,4 +1,4 @@
-import { FaBook, FaCalendarAlt, FaCalendarCheck, FaHome, FaShoppingCart } from "react-icons/fa";
+import {  FaHome } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useUser from "../CustomHocks/useUser";
 import useUserRole from "../CustomHocks/useUserRole";
@@ -12,7 +12,7 @@ import { VscPreview } from "react-icons/vsc";
 
 
 const DashBoard = () => {
-    const isAdmin = true;
+   
     const { user } = useUser()
     const {data} = useUserRole()
 
@@ -20,7 +20,7 @@ const DashBoard = () => {
     // const [isAdmin]=useAdmin()
 
 
-    console.log(data);
+ 
 
     return (
         <div className=" lg:flex  max-w">
