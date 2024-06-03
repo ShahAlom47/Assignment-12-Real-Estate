@@ -11,12 +11,26 @@ import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
 import PropTypes from 'prop-types'
 import useAddWish from '../../CustomHocks/useAddWish';
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 
 const PropertyCard = ({card,idx}) => {
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [addWishList]=useAddWish()
+
+    const handelWishList=async(card)=>{
+      const res =await addWishList(card)
+      console.log(res)
+      if(res.insertedId){
+        toast.success('Successfully added to wishlist')
+      
+      }
+      else if(res.message==='Wishlist item already exists'  ){
+        toast.info('This property already exists your List')}
+    }
 
     function handleMouseOver(index) {
         setHoveredIndex(index);
@@ -27,6 +41,7 @@ const PropertyCard = ({card,idx}) => {
     }
     return (
         <div>
+            <ToastContainer></ToastContainer>
             <Tooltip id="my-tooltip" className='z-20' />
              <div key={card._id} className={`card card-compact bg-base-100 shadow-xl rounded-md `}
                         onMouseOver={() => handleMouseOver(idx)}
@@ -47,7 +62,7 @@ const PropertyCard = ({card,idx}) => {
                                 style={{ transition: 'transform 0.4s ease', transform: hoveredIndex === idx ? 'translateY(165%)' : 'translateY(-12%)' }}
                                 className="bg-white bg-opacity-50 backdrop-filter backdrop-blur-md rounded-l-sm   p-1 pl-3  pr-8 text-lg z-10 absolute flex  items-center -top-5 right-0 ">
                                 <Link ><p
-                                onClick={()=>addWishList(card)}
+                                onClick={()=>handelWishList(card)}
                                     data-tooltip-id="my-tooltip" data-tooltip-content="add to wishlist"
                                     className=' z-0 -ml-1   font-semibold hover:text-red-700 text-black'><GoStar /></p></Link>
 

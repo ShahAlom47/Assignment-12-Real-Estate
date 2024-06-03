@@ -9,11 +9,13 @@ const useAddWish = () => {
 
 
     const addWishList=async(data)=>{
-        const wishData={...data,userEmail:user.email}
+        const { _id, ...restData } = data;
+        const wishData = { ...restData, property_id: _id, userEmail: user.email };
 
        const res=await axiosSecure.post('/addWishList',wishData) 
 
        return res.data
+    // console.log(wishData);
   
 
 

@@ -15,6 +15,7 @@ import DashBoard from "../DashBoard/DashBoard";
 import UserHome from "../DashBoard/UserHome/UserHome";
 import AdminHome from "../DashBoard/AdminHome/AdminHome";
 import AgentHome from "../DashBoard/AgentHome/AgentHome";
+import WishList from "../DashBoard/AdminHome/WishList";
 
 
 const router = createBrowserRouter([
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
           {
             path: "/dashBoard/userHome",
             element: <PrivetRouter><UserHome></UserHome></PrivetRouter>,
+          },
+          {
+            path: "/dashBoard/userWishList",
+            element: <PrivetRouter><WishList></WishList></PrivetRouter>,
           },
       
        
