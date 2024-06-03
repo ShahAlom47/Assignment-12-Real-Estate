@@ -11,12 +11,33 @@ import 'react-toastify/dist/ReactToastify.css';
 import logo from '../../assets/Logo/logo.jpg'
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { CiLogin } from "react-icons/ci";
+import { useEffect, useState } from "react";
+import useAxios from "../../CustomHocks/useAxios";
+
 
 
 const Navbar = () => {
 
     const [themeData, handelTheme] = useTheme()
     const { user, logOutUser } = useUser()
+    const axiosSecure = useAxios()
+    const [data, setData] = useState(null)
+  
+   
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (user && token) {
+            axiosSecure.get(`/user/role/${user.email}`)
+                .then((res) => {
+                    setData(res.data.userRole || 'user');
+                   
+                })
+                
+        }
+    }, [user, axiosSecure]);
+
+
+    // console.log(data, 'is');
 
     const handelLogOut = () => {
         logOutUser()
@@ -25,13 +46,25 @@ const Navbar = () => {
             })
     }
 
-    
+
 
     const nav = <>
         <NavLink><li>HOME</li></NavLink>
         <NavLink to={'/allProperty'}><li>ALL PROPERTY</li></NavLink>
         <NavLink><li>ABOUT US</li></NavLink>
         <NavLink><li>CONTACT US</li></NavLink>
+    </>
+
+    const dashNav = <>
+
+
+        {user && data === 'agent' ? (<NavLink to={'/dashBoard/agentHome'}><li className="border-b-2 flex flex-row items-center"> <span><MdDashboard /></span>Agent DashBoard</li></NavLink>) : null}
+
+        {user && data === 'admin' ? (<NavLink to={'/dashBoard/adminHome'}><li className="border-b-2 flex flex-row items-center"> <span><MdDashboard /></span>Admin DashBoard</li></NavLink>) : null}
+
+        {user && data !== 'agent' && data !== 'admin' ? (<NavLink to={'/dashBoard/userHome'}><li className="border-b-2 flex flex-row items-center"> <span><MdDashboard /></span>User DashBoard</li></NavLink>) : null}
+
+
     </>
     return (
         <Headroom className="z-[9999] sticky">
@@ -58,19 +91,21 @@ const Navbar = () => {
 
                         <button onClick={handelTheme} className=" text-xl hover:bg-[#00000049] mx-2 p-2 rounded-full" title="Theme">{themeData === 'light' ? <MdSunny /> : <IoMoon />}</button>
                         {
-                            user ? <div  className=" dropdown dropdown-hover  dropdown-end">
-                                <div  className="btn btn-ghost btn-circle avatar">
-                                    <div role="button" tabIndex={0}  className=" w-10 rounded-full border-2 border-[#8d3ad1e3] flex flex-row justify-center items-center">
-                                    {
-                                            user?.photoURL ? <img alt="user" src={user?.photoURL} />:
-                                            <img alt="user" src='https://i.ibb.co/kMcSvFW/user.webp' />
-                                    }
-                                       
+                            user ? <div className=" dropdown dropdown-hover  dropdown-end">
+                                <div className="btn btn-ghost btn-circle avatar">
+                                    <div role="button" tabIndex={0} className=" w-10 rounded-full border-2 border-[#8d3ad1e3] flex flex-row justify-center items-center">
+                                        {
+                                            user?.photoURL ? <img alt="user" src={user?.photoURL} /> :
+                                                <img alt="user" src='https://i.ibb.co/kMcSvFW/user.webp' />
+                                        }
+
                                     </div>
                                 </div>
-                                <ul tabIndex={0} className="mt-0 pt-3 z-[1] p-2 shadow-lg shadow-[#8355b8] menu menu-sm dropdown-content bg-base-100 rounded-sm w-40">
+                                <ul tabIndex={0} className="mt-0 pt-3 z-[1] p-2 shadow-lg shadow-[#8355b8] menu menu-sm dropdown-content bg-base-100 rounded-sm w-60">
                                     <p className=" text-center underline font-bold bg-[#8d3ad1e3] text-white py-2 uppercase">{user?.displayName}</p>
-                                    <NavLink><li className="border-b-2 flex flex-row items-center"> <span><MdDashboard /></span> DashBoard</li></NavLink>
+                                    {
+                                        dashNav
+                                    }
                                     <li onClick={handelLogOut} className=" border-b-2 flex flex-row items-center ">  <span><LuLogOut /></span>Logout</li>
 
                                 </ul>

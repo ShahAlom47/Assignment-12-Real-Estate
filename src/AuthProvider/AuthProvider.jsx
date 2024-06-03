@@ -14,6 +14,7 @@ const AuthProvider = ({ children }) => {
   const axiosPublic=useAxiosPublic()
 
 
+
   const googleProvider = new GoogleAuthProvider();
   const gitHubProvider = new GithubAuthProvider();
 
@@ -46,12 +47,11 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
+      console.log(user);
       if(user){
         const userInfo=user.email
-     //    
          axiosPublic.post('/jwt',{userInfo})
          .then(res=>{
-          console.log(res.data);
            if(res.data.token){
                  localStorage.setItem('token',res.data.token)
              }
@@ -64,10 +64,11 @@ const AuthProvider = ({ children }) => {
      }
       setUser(user);
       setLoading(false);
+  
     });
     return () => unSubscribe
 
-  }, [loading, user])
+  }, [loading, user,axiosPublic])
 
 
 

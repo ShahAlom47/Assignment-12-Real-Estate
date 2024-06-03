@@ -11,6 +11,11 @@ import Login from "../Pages/Authentication/Login/Login";
 import PropertyDetails from "../Pages/PropertyDetails/PropertyDetails";
 import PrivetRouter from "./PrivetRouter/PrivetRouter";
 import AllProperty from "../Pages/AllProperty/AllProperty";
+import DashBoard from "../DashBoard/DashBoard";
+import UserHome from "../DashBoard/UserHome/UserHome";
+import AdminHome from "../DashBoard/AdminHome/AdminHome";
+import AgentHome from "../DashBoard/AgentHome/AgentHome";
+
 
 const router = createBrowserRouter([
     {
@@ -40,6 +45,40 @@ const router = createBrowserRouter([
             },
         ]
     },
+    {
+        path: "/dashBoard",
+        element: <PrivetRouter><DashBoard></DashBoard></PrivetRouter>,
+        errorElement: <ErrorPage />,
+        children: [
+    // user routes
+    
+          {
+            path: "/dashBoard/userHome",
+            element: <PrivetRouter><UserHome></UserHome></PrivetRouter>,
+          },
+      
+       
+    
+          // admin routes 
+    
+          {
+            path: "/dashBoard/adminHome",
+            element: <AdminHome></AdminHome>,
+          },
+        
+
+        //   agent route
+
+        {
+            path: "/dashBoard/agentHome",
+            element: <AgentHome></AgentHome>,
+          },
+
+
+        ]
+    
+      },
+    
 ]);
 
 export default router;

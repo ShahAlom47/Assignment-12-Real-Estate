@@ -129,7 +129,7 @@ const Login = () => {
                        
           
 
-                        <input className="btn btn-wide bg-[#56af27] hover:bg-[#4c9724] rounded-sm text-white" type="submit" />
+                        <input className="btn btn-wide bg-[#56af27] hover:bg-[#4c9724] rounded-sm text-white" type="submit" value={'Login'} />
                     </form>
                     <div className=" flex flex-col justify-center items-center">
                     <p className="font-semibold"> Create a new account <Link to={'/register'}><button className="btn-link btn">Register</button></Link></p>
