@@ -66,7 +66,7 @@ const DashBoard = () => {
                     <MdOutlineAssessment /> Property Bought
                     </button>
                 </NavLink>
-                <NavLink to={'/dashBoard/userReview'}>
+                <NavLink to={'/dashBoard/myReviews'}>
                     <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
                     <VscPreview /> My Reviews.
                     </button>

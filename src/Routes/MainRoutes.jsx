@@ -17,6 +17,8 @@ import AdminHome from "../DashBoard/AdminHome/AdminHome";
 import AgentHome from "../DashBoard/AgentHome/AgentHome";
 import WishList from "../DashBoard/AdminHome/WishList";
 import MakeOffer from "../DashBoard/UserHome/MakeOffer.jsx/MakeOffer";
+import MyReviews from "../DashBoard/UserHome/MyReviews/MyReviews";
+
 
 
 const router = createBrowserRouter([
@@ -65,6 +67,10 @@ const router = createBrowserRouter([
           {
             path: "/dashBoard/makeOffer/:id",
             element: <PrivetRouter><MakeOffer></MakeOffer></PrivetRouter>,
+          },
+          {
+            path: "/dashBoard/myReviews",
+            element: <PrivetRouter><MyReviews></MyReviews></PrivetRouter>,
           },
       
        

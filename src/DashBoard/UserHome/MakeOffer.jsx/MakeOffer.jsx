@@ -1,5 +1,5 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import {  useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../../CustomHocks/useAxios";
 import useUser from "../../../CustomHocks/useUser";
@@ -16,6 +16,7 @@ const MakeOffer = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [price, setPrice] = useState('');
     const [isValid, setIsValid] = useState(true);
+    const navigate =useNavigate()
     
     const { id } = useParams();
     const { user } = useUser()
@@ -50,11 +51,10 @@ const MakeOffer = () => {
         }
     };
 
-    const handelFrom = (e) => {
+    const handelFrom = async(e) => {
         e.preventDefault()
         // const price = e.target.price.value
        
-
         const offerData = {
             price,
             date: startDate,
@@ -74,7 +74,22 @@ const MakeOffer = () => {
             return
         } else {
            
-            console.log(offerData);
+            const res= await axiosSecure.post('/addOffer',offerData)
+            if(res.data.insertedId){
+                e.target.reset()
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your offer successfully Submitted ",
+                    showConfirmButton: true,
+                    timer: 1500
+                  });
+
+                  setTimeout(() => {
+                    navigate('/dashBoard/userWishList')
+                  }, 1500);
+            }
+            console.log(res.data);
 
         }
 
