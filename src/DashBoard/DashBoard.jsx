@@ -3,8 +3,9 @@ import { NavLink, Outlet } from "react-router-dom";
 import useUser from "../CustomHocks/useUser";
 import useUserRole from "../CustomHocks/useUserRole";
 import { TbJewishStar } from "react-icons/tb";
-import { MdOutlineAssessment } from "react-icons/md";
+import { MdBookmarkAdded, MdDomainAdd, MdOutlineAssessment, MdOutlineSell } from "react-icons/md";
 import { VscPreview } from "react-icons/vsc";
+import { CiSquareQuestion } from "react-icons/ci";
 
 
 
@@ -41,11 +42,31 @@ const DashBoard = () => {
                         </div>
                     ) : null}
 
-                    {user && data === 'agent' ? (
+                    {user && data ==='agent'? (
                         <div className="flex gap-3 flex-wrap lg:flex-col">
                         <NavLink to={'/dashBoard/agentHome'}>
                             <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
                                 <FaHome /> Agent Profile
+                            </button>
+                        </NavLink>
+                        <NavLink to={'/dashBoard/addProperty'}>
+                            <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
+                            <MdDomainAdd/> Add Property
+                            </button>
+                        </NavLink>
+                        <NavLink to={'/dashBoard/agentHome'}>
+                            <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
+                            <MdBookmarkAdded /> My Added Property
+                            </button>
+                        </NavLink>
+                        <NavLink to={'/dashBoard/agentHome'}>
+                            <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
+                            <MdOutlineSell /> My Sold Property
+                            </button>
+                        </NavLink>
+                        <NavLink to={'/dashBoard/agentHome'}>
+                            <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
+                            <CiSquareQuestion /> Requested Properties
                             </button>
                         </NavLink>
                         </div>

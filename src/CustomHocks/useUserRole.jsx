@@ -9,7 +9,7 @@ const useUserRole = () => {
 
    
 
-    const { data, error, isLoading, refetch } = useQuery({
+    const { data, error, isLoading, refetch,isPending } = useQuery({
         queryKey: ['userRoles', user?.email],
         queryFn: async () => {
             if (!user || !user.email) {
@@ -23,7 +23,7 @@ const useUserRole = () => {
         enabled: !!user?.email,
     });
 
-    return { data, error, isLoading, refetch };
+    return { data, error, isLoading, refetch ,isPending};
 };
 
 export default useUserRole;

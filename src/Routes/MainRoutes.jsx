@@ -1,7 +1,7 @@
 
 
 import {
-    createBrowserRouter,
+  createBrowserRouter,
 } from "react-router-dom";
 import Root from "../Root/Root";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
@@ -19,87 +19,93 @@ import WishList from "../DashBoard/UserHome/WishList/WishList";
 import MakeOffer from "../DashBoard/UserHome/MakeOffer.jsx/MakeOffer";
 import MyReviews from "../DashBoard/UserHome/MyReviews/MyReviews";
 import MyBoughtProperty from "../DashBoard/UserHome/MyBoughtProperty/MyBoughtProperty";
+import AgentRoutes from "./AgentRoutes/AgentRoutes";
+import AddProperty from "../DashBoard/AgentHome/AddProperty/AddProperty";
 
 
 
 const router = createBrowserRouter([
-    {
+  {
+    path: "/",
+    element: <Root></Root>,
+    errorElement: <ErrorPage />,
+    children: [
+      {
         path: "/",
-        element: <Root></Root>,
-        errorElement: <ErrorPage />,
-        children: [
-            {
-                path: "/",
-                element: <Home></Home>,
-            },
-            {
-                path: "/register",
-                element: <Register></Register>,
-            },
-            {
-                path: "/login",
-                element: <Login></Login>,
-            },
-            {
-                path: "/details/:id",
-                element: <PrivetRouter><PropertyDetails></PropertyDetails></PrivetRouter>,
-            },
-            {
-                path: "/allProperty",
-                element: <PrivetRouter><AllProperty></AllProperty></PrivetRouter>,
-            },
-        ]
-    },
-    {
-        path: "/dashBoard",
-        element: <PrivetRouter><DashBoard></DashBoard></PrivetRouter>,
-        errorElement: <ErrorPage />,
-        children: [
-    // user routes
-    
-          {
-            path: "/dashBoard/userHome",
-            element: <PrivetRouter><UserHome></UserHome></PrivetRouter>,
-          },
-          {
-            path: "/dashBoard/userWishList",
-            element: <PrivetRouter><WishList></WishList></PrivetRouter>,
-          },
-          {
-            path: "/dashBoard/makeOffer/:id",
-            element: <PrivetRouter><MakeOffer></MakeOffer></PrivetRouter>,
-          },
-          {
-            path: "/dashBoard/myBoughtProperty",
-            element: <PrivetRouter><MyBoughtProperty></MyBoughtProperty></PrivetRouter>,
-          },
-          {
-            path: "/dashBoard/myReviews",
-            element: <PrivetRouter><MyReviews></MyReviews></PrivetRouter>,
-          },
-      
-       
-    
-          // admin routes 
-    
-          {
-            path: "/dashBoard/adminHome",
-            element: <AdminHome></AdminHome>,
-          },
-        
-
-        //   agent route
-
-        {
-            path: "/dashBoard/agentHome",
-            element: <AgentHome></AgentHome>,
-          },
-
-
-        ]
-    
+        element: <Home></Home>,
       },
-    
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/details/:id",
+        element: <PrivetRouter><PropertyDetails></PropertyDetails></PrivetRouter>,
+      },
+      {
+        path: "/allProperty",
+        element: <PrivetRouter><AllProperty></AllProperty></PrivetRouter>,
+      },
+    ]
+  },
+  {
+    path: "/dashBoard",
+    element: <PrivetRouter><DashBoard></DashBoard></PrivetRouter>,
+    errorElement: <ErrorPage />,
+    children: [
+      // user routes
+
+      {
+        path: "/dashBoard/userHome",
+        element: <PrivetRouter><UserHome></UserHome></PrivetRouter>,
+      },
+      {
+        path: "/dashBoard/userWishList",
+        element: <PrivetRouter><WishList></WishList></PrivetRouter>,
+      },
+      {
+        path: "/dashBoard/makeOffer/:id",
+        element: <PrivetRouter><MakeOffer></MakeOffer></PrivetRouter>,
+      },
+      {
+        path: "/dashBoard/myBoughtProperty",
+        element: <PrivetRouter><MyBoughtProperty></MyBoughtProperty></PrivetRouter>,
+      },
+      {
+        path: "/dashBoard/myReviews",
+        element: <PrivetRouter><MyReviews></MyReviews></PrivetRouter>,
+      },
+
+
+
+      // admin routes 
+
+      {
+        path: "/dashBoard/adminHome",
+        element: <AdminHome></AdminHome>,
+      },
+
+
+      //   agent route
+
+      {
+        path: "/dashBoard/agentHome",
+        element: <AgentRoutes><AgentHome></AgentHome></AgentRoutes>,
+      },
+      {
+        path: "/dashBoard/addProperty",
+        element: <AgentRoutes><AddProperty></AddProperty></AgentRoutes>,
+      },
+
+
+    ]
+
+  },
+
 ]);
 
 export default router;

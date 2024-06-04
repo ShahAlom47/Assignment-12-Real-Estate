@@ -7,7 +7,6 @@ const UserProfileLayout = () => {
     const {data}=useUserRole();
 
     return (
-        <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 bg-yellow-50 lg:min-h-screen">
             <div className=" flex flex-col items-center justify-center lg:p-10 md:p-6 p-3 ">
                <div className=" flex justify-center items-center flex-col bg-slate-300 p-6 rounded-md">
                <div className=" w-28 h-28">
@@ -20,18 +19,9 @@ const UserProfileLayout = () => {
                </div>
 
             </div>
-            <div className=" flex flex-col items-start justify-center lg:p-10 md:p-6 p-3 lg:pl-3 ">
-               <div className=" w-full space-y-3">
-               <div className=" bg-slate-300 rounded-r-full w-full p-3 pr-5 font-semibold "> Reviews: <span className="font-medium">120</span> </div>
-               <div className=" bg-slate-300 rounded-r-full w-full p-3 pr-5 font-semibold "> Reviews: <span className="font-medium">120</span> </div>
-               <div className=" bg-slate-300 rounded-r-full w-full p-3 pr-5 font-semibold "> Reviews: <span className="font-medium">120</span> </div>
-               <div className=" bg-slate-300 rounded-r-full w-full p-3 pr-5 font-semibold "> Reviews: <span className="font-medium">120</span> </div>
-                
-               </div>
-
-            </div>
+           
             
-        </div>
+        
     );
 };
 
