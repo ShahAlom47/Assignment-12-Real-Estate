@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../../CustomHocks/useAxios";
 import useUser from "../../../CustomHocks/useUser";
@@ -16,12 +16,14 @@ const MakeOffer = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [price, setPrice] = useState('');
     const [isValid, setIsValid] = useState(true);
+    const [minPriceIs,setMinPriceIs]=useState(0) 
+    const [maxPriceIs,setMaxPriceIs]=useState(0) 
     const navigate =useNavigate()
     
     const { id } = useParams();
     const { user } = useUser()
     const axiosSecure = useAxios()
-    const { data } = useQuery({
+    const { data  } = useQuery({
         queryKey: ['makeOffer'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/property/${id}`)
@@ -30,21 +32,34 @@ const MakeOffer = () => {
     })
 
 
-    const price_range = data.price_range
-    const cleanPriceRange = price_range.replace(/\$/g, '');
-    const [minPrices, maxPrices] = cleanPriceRange.split('-');
-    const minPrice = parseInt(minPrices.trim().replace(/,/g, ''));
-    const maxPrice = parseInt(maxPrices.trim().replace(/,/g, ''));
+useEffect(()=>{
+
+    if(data){
+        const price_range = data?.price_range
+        const cleanPriceRange = price_range.replace(/\$/g, '');
+        const [minPrices, maxPrices] = cleanPriceRange.split('-');
+        const minPrice = parseInt(minPrices.trim().replace(/,/g, ''));
+        const maxPrice = parseInt(maxPrices.trim().replace(/,/g, ''));
+        setMaxPriceIs(maxPrice)
+        setMinPriceIs(minPrice)
+    }
+
+},[data])
+
+ 
 
 
     const handlePriceChange = (e) => {
+
+      
+
         const inputPrice = e.target.value;
         console.log(inputPrice,isValid);
         setPrice(inputPrice);
 
         const cleanedPrice = parseInt(inputPrice.replace(/[^0-9]/g, ''), 10);
 
-        if (cleanedPrice >= minPrice && cleanedPrice <= maxPrice) {
+        if (cleanedPrice >= minPriceIs && cleanedPrice <= maxPriceIs) {
             setIsValid(true);
         } else {
             setIsValid(false);
@@ -59,9 +74,12 @@ const MakeOffer = () => {
             price,
             date: startDate,
             property_title:data.title,
-            property_id:data.property_id,
+            property_image:data.property_image,
+            property_id:data._id,
             property_location:data.property_location,
             agent_name:data.agent_name,
+            agent_Email:data.agent_email||'',
+            agent_photo:data.agent_photo,
             buyer_email:user.email,
             buyer_name:user.name,
             verification_status:'pending'
@@ -69,8 +87,8 @@ const MakeOffer = () => {
 
         }
 
-        if (price < minPrice || price > maxPrice) {
-            Swal.fire(`The price must be between $${minPrice.toLocaleString()} and $${maxPrice.toLocaleString()}.`);
+        if (price < minPriceIs || price > maxPriceIs) {
+            Swal.fire(`The price must be between $${minPriceIs.toLocaleString()} and $${maxPriceIs.toLocaleString()}.`);
             return
         } else {
            

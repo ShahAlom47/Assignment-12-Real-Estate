@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxios from "../../CustomHocks/useAxios";
-import useUser from "../../CustomHocks/useUser";
-import LoadingRing from "../../SharedComponents/LoadingRing/LoadingRing";
+import useAxios from "../../../CustomHocks/useAxios";
+import useUser from "../../../CustomHocks/useUser";
+import LoadingRing from "../../../SharedComponents/LoadingRing/LoadingRing";
 
 import { CiLocationOn } from "react-icons/ci";
 import { Link } from "react-router-dom";

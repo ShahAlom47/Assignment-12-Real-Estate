@@ -64,3 +64,7 @@ transform: scale(0.94);
 .title-t:hover::before {
   width: 100%; /* Display full width on hover */
 }
+
+.active{
+  text-decoration: underline;
+}

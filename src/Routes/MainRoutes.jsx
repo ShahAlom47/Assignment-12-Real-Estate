@@ -15,9 +15,10 @@ import DashBoard from "../DashBoard/DashBoard";
 import UserHome from "../DashBoard/UserHome/UserHome";
 import AdminHome from "../DashBoard/AdminHome/AdminHome";
 import AgentHome from "../DashBoard/AgentHome/AgentHome";
-import WishList from "../DashBoard/AdminHome/WishList";
+import WishList from "../DashBoard/UserHome/WishList/WishList";
 import MakeOffer from "../DashBoard/UserHome/MakeOffer.jsx/MakeOffer";
 import MyReviews from "../DashBoard/UserHome/MyReviews/MyReviews";
+import MyBoughtProperty from "../DashBoard/UserHome/MyBoughtProperty/MyBoughtProperty";
 
 
 
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
           {
             path: "/dashBoard/makeOffer/:id",
             element: <PrivetRouter><MakeOffer></MakeOffer></PrivetRouter>,
+          },
+          {
+            path: "/dashBoard/myBoughtProperty",
+            element: <PrivetRouter><MyBoughtProperty></MyBoughtProperty></PrivetRouter>,
           },
           {
             path: "/dashBoard/myReviews",
