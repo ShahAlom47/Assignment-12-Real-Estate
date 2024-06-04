@@ -54,7 +54,7 @@ const DashBoard = () => {
                             <MdDomainAdd/> Add Property
                             </button>
                         </NavLink>
-                        <NavLink to={'/dashBoard/agentHome'}>
+                        <NavLink to={'/dashBoard/myAddedProperty'}>
                             <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
                             <MdBookmarkAdded /> My Added Property
                             </button>

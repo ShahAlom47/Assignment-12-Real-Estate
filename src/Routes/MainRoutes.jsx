@@ -21,6 +21,7 @@ import MyReviews from "../DashBoard/UserHome/MyReviews/MyReviews";
 import MyBoughtProperty from "../DashBoard/UserHome/MyBoughtProperty/MyBoughtProperty";
 import AgentRoutes from "./AgentRoutes/AgentRoutes";
 import AddProperty from "../DashBoard/AgentHome/AddProperty/AddProperty";
+import MyAddedProperty from "../DashBoard/AgentHome/MyAddedProperty/MyAddedProperty";
 
 
 
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
       {
         path: "/dashBoard/addProperty",
         element: <AgentRoutes><AddProperty></AddProperty></AgentRoutes>,
+      },
+      {
+        path: "/dashBoard/myAddedProperty",
+        element: <AgentRoutes><MyAddedProperty></MyAddedProperty></AgentRoutes>,
       },
 
 

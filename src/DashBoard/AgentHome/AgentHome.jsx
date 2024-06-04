@@ -3,7 +3,7 @@ import UserProfileLayout from "../../SharedComponents/UserProfileLayout/UserProf
 
 const AgentHome = () => {
     return (
-        <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 bg-yellow-500 lg:min-h-screen">
+        <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 bg-yellow-50 lg:min-h-screen">
             <UserProfileLayout></UserProfileLayout>
            
             <div className=" flex flex-col items-center justify-center lg:p-10 md:p-6 p-3 lg:pl-3 ">
