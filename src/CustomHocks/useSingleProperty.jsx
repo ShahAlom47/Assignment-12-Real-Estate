@@ -1,13 +1,19 @@
+import { useQuery } from "@tanstack/react-query";
 import useAxios from "./useAxios";
 
-const useSingleProperty = () => {
-    const axiosSecure=useAxios()
+const useSingleProperty = (id) => {
+  const axiosSecure = useAxios();
 
-  const getProperty =async(id)=>{
-    const res =await axiosSecure.get(`/property/${id}`)
-    return res.data
-  }
-    return [getProperty]
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['editProperty', id],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/property/${id}`);
+      return res.data;
+    },
+    enabled: !!id, 
+  });
+
+  return { data, error, isLoading };
 };
 
 export default useSingleProperty;

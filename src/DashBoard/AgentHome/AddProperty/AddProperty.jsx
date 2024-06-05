@@ -50,7 +50,7 @@ const AddProperty = () => {
                     confirmButtonText: "My Added Property"
                   }).then((result) => {
                     if (result.isConfirmed) {
-                    navigate('/dashBoard/agentHome')
+                    navigate('/dashBoard/myAddedProperty')
                     }
                   });
                 
