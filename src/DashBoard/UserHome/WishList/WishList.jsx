@@ -25,6 +25,7 @@ const WishList = () => {
         }
     })
 
+    console.log(data);
 
     const handelDelete =async(id)=>{
 

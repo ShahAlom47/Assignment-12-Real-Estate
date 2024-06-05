@@ -32,19 +32,22 @@ const MakeOffer = () => {
     })
 
 
-useEffect(()=>{
+    useEffect(() => {
+        if (data.price_range) {
+            const price_range = data?.price_range;
+            console.log(price_range);
+                const cleanPriceRange = price_range.replace(/\$/g, '');
 
-    if(data){
-        const price_range = data?.price_range
-        const cleanPriceRange = price_range.replace(/\$/g, '');
-        const [minPrices, maxPrices] = cleanPriceRange.split('-');
-        const minPrice = parseInt(minPrices.trim().replace(/,/g, ''));
-        const maxPrice = parseInt(maxPrices.trim().replace(/,/g, ''));
-        setMaxPriceIs(maxPrice)
-        setMinPriceIs(minPrice)
-    }
-
-},[data])
+                
+                    const [minPrices, maxPrices] = cleanPriceRange.split('-');
+                    const minPrice = parseInt(minPrices.trim().replace(/,/g, ''));
+                    const maxPrice = parseInt(maxPrices.trim().replace(/,/g, ''));
+                    setMaxPriceIs(maxPrice);
+                    setMinPriceIs(minPrice);
+                 
+            
+        }
+    }, [data]);
 
  
 
@@ -78,10 +81,10 @@ useEffect(()=>{
             property_id:data._id,
             property_location:data.property_location,
             agent_name:data.agent_name,
-            agent_Email:data.agent_email||'',
+            agent_email:data.agent_email||'',
             agent_photo:data.agent_photo,
             buyer_email:user.email,
-            buyer_name:user.name,
+            buyer_name:user.displayName,
             verification_status:'pending'
             
 
@@ -164,6 +167,7 @@ useEffect(()=>{
                              type="number" 
                              name="price" 
                              onChange={handlePriceChange}
+                             required
                            
                               placeholder="Amount" />
                             

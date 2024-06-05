@@ -25,6 +25,7 @@ const DashBoard = () => {
 
     return (
         <div className=" lg:flex   max-w">
+            
 
             <div className="p-10 lg:w-3/12 lg:min-h-screen  bg-[#D1A054]">
                 <div className="mb-5  border-b-2 border-gray-700  ">
@@ -64,7 +65,7 @@ const DashBoard = () => {
                             <MdOutlineSell /> My Sold Property
                             </button>
                         </NavLink>
-                        <NavLink to={'/dashBoard/agentHome'}>
+                        <NavLink to={'/dashBoard/requestedProperty'}>
                             <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
                             <CiSquareQuestion /> Requested Properties
                             </button>

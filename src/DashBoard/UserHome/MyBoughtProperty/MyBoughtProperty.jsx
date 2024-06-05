@@ -6,19 +6,51 @@ import { useQuery } from "@tanstack/react-query";
 import { CiLocationOn } from "react-icons/ci";
 import LoadingRing from "../../../SharedComponents/LoadingRing/LoadingRing";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 const MyBoughtProperty = () => {
     const { user } = useUser()
     const axiosSecure = useAxios()
 
-    const { data, isLoading  } = useQuery({
+    const { data, isLoading,refetch  } = useQuery({
         queryKey: ['myBoughtProperty'],
         queryFn: async () => {
             const res= await axiosSecure(`/offeredProperty/${user?.email}`)
             return res.data ;
         }
     })
+
+    const handelDelete =(id)=>{
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then(async(result) => {
+            if (result.isConfirmed) {
+
+                const res =await axiosSecure.delete(`/offeredProperty/delete/${id}`)
+                console.log(res);
+                if(res.data.deletedCount>0){
+                    refetch()
+                    Swal.fire({
+                        title: "Cancel!",
+                        text: "Your offer has been cancel.",
+                        icon: "success"
+                      });
+
+                }
+
+            
+            }
+          });
+
+       
+    }
 
     console.log(data);
 
@@ -51,6 +83,7 @@ const MyBoughtProperty = () => {
                                         <h1 className=" font-bold"> Offered Price :<span className="text-xl font-bold">$ {wish.price}</span></h1>
                                         <h2 className={` w-24 text-center rounded-sm ${wish.verification_status==='Verified'? 'bg-green-500': 'bg-yellow-500'}`}>{wish.verification_status}</h2>
                                         <Link disabled={wish.verification_status==='accepted'?false: true}><button className={`${wish.verification_status==='accepted'?'': "opacity-25 "} btn btn-sm border-green-500 rounded-sm`} >Pay</button></Link>
+                                        <Link ><button onClick={()=>handelDelete(wish._id)} className={` btn btn-sm border-red-500 rounded-sm`} >Cancel</button></Link>
                                     </div>
                                 </div>
                                 

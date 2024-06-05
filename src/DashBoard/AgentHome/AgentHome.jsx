@@ -1,9 +1,14 @@
+import { Helmet } from "react-helmet";
 import UserProfileLayout from "../../SharedComponents/UserProfileLayout/UserProfileLayout";
 
 
 const AgentHome = () => {
     return (
         <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 bg-yellow-50 lg:min-h-screen">
+           <Helmet>
+                <title>HONEST || Dashboard || Agent Home </title>
+            </Helmet>
+          
             <UserProfileLayout></UserProfileLayout>
            
             <div className=" flex flex-col items-center justify-center lg:p-10 md:p-6 p-3 lg:pl-3 ">

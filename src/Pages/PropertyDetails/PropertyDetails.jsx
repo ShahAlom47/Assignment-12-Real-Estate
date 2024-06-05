@@ -17,6 +17,7 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import useAxios from "../../CustomHocks/useAxios";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import useAddWish from "../../CustomHocks/useAddWish";
 
 
 const PropertyDetails = () => {
@@ -26,6 +27,7 @@ const PropertyDetails = () => {
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxios();
     const location = useLocation();
+    const [addWishList]=useAddWish()
 
 
     const { data, isLoading, error } = useQuery({
@@ -35,6 +37,7 @@ const PropertyDetails = () => {
             return res.data
         }
     })
+
     const {refetch, data: reviewData } = useQuery({
         queryKey: ['reviewData'],
         queryFn: async () => {
@@ -47,6 +50,17 @@ const PropertyDetails = () => {
     useEffect(() => {
         setReviewErr(false)
     }, [])
+
+    const handelWishList=async()=>{
+        const res =await addWishList(data)
+        console.log(res)
+        if(res.insertedId){
+          toast.success('Successfully added to wishlist')
+        
+        }
+        else if(res.message==='Wishlist item already exists'  ){
+          toast.info('This property already exists your List')}
+      }
 
 
     const handelReview = () => {
@@ -232,7 +246,7 @@ const PropertyDetails = () => {
                             <h1 className="font-bold text-xl">{data.price_range} $</h1>
                         </div>
                         <div className="flex justify-between mt-3">
-                            <Link><button className="flex gap-1 items-center hover:text-red-600"> <GoStar /> Add to Wishlist</button></Link>
+                            <Link><button  onClick={()=>handelWishList()} className="flex gap-1 items-center hover:text-red-600"> <GoStar /> Add to Wishlist</button></Link>
                             <Link><button data-tooltip-id="my-tooltip" data-tooltip-content="Share"  ><CiShare2 /></button></Link>
                             <Tooltip id="my-tooltip" className='z-20' />
                         </div>
