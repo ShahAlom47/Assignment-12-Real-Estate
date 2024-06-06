@@ -27,7 +27,7 @@ const DashBoard = () => {
         <div className=" lg:flex   max-w">
             
 
-            <div className="p-10 lg:w-3/12 lg:min-h-screen  bg-[#D1A054]">
+            <div className="p-10 lg:w-3/12 lg:min-h-screen  bg-[#997743]">
                 <div className="mb-5  border-b-2 border-gray-700  ">
                     <h1 className="text-2xl font-bold">HONEST</h1>
                     <p className="font-semibold  ">Real Estate</p>
@@ -38,6 +38,11 @@ const DashBoard = () => {
                             <NavLink to={'/dashBoard/adminHome'}>
                                 <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
                                     <FaHome /> Admin Profile
+                                </button>
+                            </NavLink>
+                            <NavLink to={'/dashBoard/manageProperties'}>
+                                <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
+                                    <FaHome /> Manage Properties
                                 </button>
                             </NavLink>
                         </div>

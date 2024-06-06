@@ -54,9 +54,9 @@ const [price,setPrice]=useState(0)
               setClientSecret(response.data.clientSecret);
               setErrMsg('')
             } catch (error) {
-              console.error( error.response.data.error);
-              setErrMsg( error.response.data.error)
-              // Optionally, set an error state or show a user-friendly error message
+            //   console.error( error.response.data.error);
+              setErrMsg( error?.response?.data?.error)
+             
             }
           };
     

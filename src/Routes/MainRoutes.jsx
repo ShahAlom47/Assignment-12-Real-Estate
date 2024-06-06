@@ -25,6 +25,8 @@ import MyAddedProperty from "../DashBoard/AgentHome/MyAddedProperty/MyAddedPrope
 import EditForm from "../DashBoard/AgentHome/MyAddedProperty/EditForm/EditForm";
 import RequestedProperty from "../DashBoard/AgentHome/RequestedProperty/RequestedProperty";
 import PaymentPage from "../DashBoard/UserHome/PaymentPage/PaymentPage";
+import ManageProperties from "../DashBoard/AdminHome/ManageProperties/ManageProperties";
+import AdminRoutes from "./AdminRoutes/AdminRoutes";
 
 
 
@@ -95,6 +97,10 @@ const router = createBrowserRouter([
       {
         path: "/dashBoard/adminHome",
         element: <AdminHome></AdminHome>,
+      },
+      {
+        path: "/dashBoard/manageProperties",
+        element: <AdminRoutes><ManageProperties></ManageProperties></AdminRoutes>,
       },
 
 
