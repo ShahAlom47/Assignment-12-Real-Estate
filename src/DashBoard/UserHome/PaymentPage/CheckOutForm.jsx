@@ -1,13 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../../CustomHocks/useAxios";
-
+import PropTypes from 'prop-types';
 import useUser from "../../../CustomHocks/useUser";
 import useAxiosPublic from "../../../CustomHocks/useAxiosPublic";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { is } from "date-fns/locale";
+
 import LoadingRing from "../../../SharedComponents/LoadingRing/LoadingRing";
+import Swal from "sweetalert2";
 
 
 
@@ -30,7 +31,7 @@ const [price,setPrice]=useState(0)
 
 
 
-    const { data, error, isLoading } = useQuery({
+    const { data, isLoading } = useQuery({
         queryKey: ['offeredDataSingle'],
         queryFn: async () => {
           const res= await axiosSecure.get(`/offeredProperty/singleData/${propertyId}`)
@@ -82,7 +83,7 @@ const [price,setPrice]=useState(0)
             return;
         }
 
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
+        const { error,  } = await stripe.createPaymentMethod({
             type: 'card',
             card,
         });
@@ -127,7 +128,7 @@ const [price,setPrice]=useState(0)
                 console.log(response.data);
                 if (response.data?.modifiedCount===1) {
                  
-                    alert('payment success')
+                    Swal.fire("SweetAlert2 is working!");
                     navigate('/dashBoard/myBoughtProperty')
                 }
             }
@@ -168,3 +169,7 @@ const [price,setPrice]=useState(0)
 };
 
 export default CheckOutForm;
+
+CheckOutForm.propTypes = {
+    propertyId: PropTypes.string
+  };

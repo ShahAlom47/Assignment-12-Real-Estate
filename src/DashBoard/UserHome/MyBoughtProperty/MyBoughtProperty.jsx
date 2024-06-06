@@ -95,7 +95,14 @@ const MyBoughtProperty = () => {
                                         }
 
                                         {
-                                           wish.verification_status==='bought'?  <h1 className="border-green-500 rounded-sm border">{wish.transactions}</h1>: <Link to={`/dashBoard/payment/${wish._id}`} disabled={wish.verification_status==='accepted'?false: true}><button className={`${wish.verification_status==='accepted'?'': "opacity-25 "} btn btn-sm border-green-500 rounded-sm`} >Pay</button></Link>
+                                           wish.verification_status==='bought'?  <h1 className="border-green-500 rounded-sm border">{wish.transactions}</h1>:
+                                           <div>
+                                            {
+                                                wish.verification_status==='accepted'? <Link to={`/dashBoard/payment/${wish._id}`} ><button  className={`btn btn-sm border-green-500 rounded-sm`} >Pay</button></Link>:<button  className={`btn btn-sm border-green-500 rounded-sm opacity-30`} >Pay</button>
+                                            }
+
+                                            
+                                           </div>
                                         }
                                        
                                         <Link ><button onClick={()=>handelDelete(wish._id)} className={` btn btn-sm border-red-500 rounded-sm`} >Cancel</button></Link>
