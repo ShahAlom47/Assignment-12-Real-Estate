@@ -81,8 +81,23 @@ const MyBoughtProperty = () => {
                                     </div>
                                     <div className=" border-t-2 py-3  items-end flex-wrap flex gap-4">
                                         <h1 className=" font-bold"> Offered Price :<span className="text-xl font-bold">$ {wish.price}</span></h1>
-                                        <h2 className={` w-24 text-center rounded-sm ${wish.verification_status==='Verified'? 'bg-green-500': 'bg-yellow-500'}`}>{wish.verification_status}</h2>
-                                        <Link disabled={wish.verification_status==='accepted'?false: true}><button className={`${wish.verification_status==='accepted'?'': "opacity-25 "} btn btn-sm border-green-500 rounded-sm`} >Pay</button></Link>
+                                        {
+                                            wish.verification_status==='accepted'?<h2 className={` p-1 uppercase font-semibold w-24 text-center rounded-sm  bg-green-500`}>{wish.verification_status}</h2>:''
+                                        }
+                                        {
+                                            wish.verification_status==='pending'?<h2 className={` p-1 uppercase font-semibold w-24 text-center rounded-sm  bg-yellow-500`}>{wish.verification_status}</h2>:''
+                                        }
+                                        {
+                                            wish.verification_status==='rejected'?<h2 className={` p-1 uppercase font-semibold w-24 text-center rounded-sm bg-red-500`}>{wish.verification_status}</h2>:''
+                                        }
+                                        {
+                                            wish.verification_status==='bought'?<h2 className={` p-1 uppercase font-semibold w-24 text-center rounded-sm bg-green-500`}>{wish.verification_status}</h2>:''
+                                        }
+
+                                        {
+                                           wish.verification_status==='bought'?  <h1 className="border-green-500 rounded-sm border">{wish.transactions}</h1>: <Link to={`/dashBoard/payment/${wish._id}`} disabled={wish.verification_status==='accepted'?false: true}><button className={`${wish.verification_status==='accepted'?'': "opacity-25 "} btn btn-sm border-green-500 rounded-sm`} >Pay</button></Link>
+                                        }
+                                       
                                         <Link ><button onClick={()=>handelDelete(wish._id)} className={` btn btn-sm border-red-500 rounded-sm`} >Cancel</button></Link>
                                     </div>
                                 </div>

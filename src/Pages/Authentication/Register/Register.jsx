@@ -57,13 +57,14 @@ const Register = () => {
                         axiosPublic.post('/addUser', userInfo)
                             .then(res => {
                                 console.log(res);
-                                if (res.data.insertedId) {
-                                    toast.success('User created successfully ')
-                                
-                                    reset();
+                                if (res.data.insertedId|| res.data.message==='user already exist') {
+                                    toast.success('user created successfully  ')
+        
                                     setTimeout(() => { navigate(location.state ? location.state : '/') }, 1500)
-
+        
                                 }
+
+                                
                             })
                             .catch((error) => {
                                 setErrMsg(error.message)

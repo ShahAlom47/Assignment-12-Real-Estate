@@ -3,7 +3,6 @@ import useAxios from "../../../CustomHocks/useAxios";
 import useUser from "../../../CustomHocks/useUser";
 import LoadingRing from "../../../SharedComponents/LoadingRing/LoadingRing";
 import { Link } from "react-router-dom";
-import { CiLocationOn } from "react-icons/ci";
 import { ToastContainer, toast } from "react-toastify";
 
 
