@@ -56,6 +56,11 @@ const DashBoard = () => {
                                     <FaHome /> Manage Review
                                 </button>
                             </NavLink>
+                            <NavLink to={'/dashBoard/advertise'}>
+                                <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
+                                    <FaHome />Advertise Property
+                                </button>
+                            </NavLink>
                         </div>
                     ) : null}
 
