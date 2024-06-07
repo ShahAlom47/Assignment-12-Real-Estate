@@ -57,10 +57,10 @@ const Login = () => {
             try {
                 const methods = await fetchSignInMethodsForEmail(auth,data.email);
                 console.log(methods,data.email);
-                if (methods.length === 0) {
-                    setEmailErr("Email doesn't match");
-                    return;
-                }
+                // if (methods.length === 0) {
+                //     setEmailErr("Email doesn't match");
+                //     return;
+                // }
     
                 loginUser(data.email, data.password)
                     .then((res) => {

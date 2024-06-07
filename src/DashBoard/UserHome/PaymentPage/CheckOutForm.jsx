@@ -128,7 +128,7 @@ const [price,setPrice]=useState(0)
                 console.log(response.data);
                 if (response.data?.modifiedCount===1) {
                  
-                    Swal.fire("SweetAlert2 is working!");
+                    Swal.fire("Payment Completed");
                     navigate('/dashBoard/myBoughtProperty')
                 }
             }

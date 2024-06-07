@@ -59,7 +59,7 @@ const Register = () => {
                                 console.log(res);
                                 if (res.data.insertedId|| res.data.message==='user already exist') {
                                     toast.success('user created successfully  ')
-        
+                                        reset()
                                     setTimeout(() => { navigate(location.state ? location.state : '/') }, 1500)
         
                                 }

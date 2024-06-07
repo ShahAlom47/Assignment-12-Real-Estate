@@ -3,7 +3,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import CheckOutForm from './CheckOutForm';
 import { useParams } from 'react-router-dom';
-const stripePromise = loadStripe('pk_test_51PKiBjL0G1CCoDyDqmFNbtZ2xirq6kQGJNIeLWUtxqtLDWHXcCePls2KhxUB70IizVU7RlzrylIiesFuke0I1mwh00YdN38b1Y');
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
 const PaymentPage = () => {
     const  {id}= useParams()
 
