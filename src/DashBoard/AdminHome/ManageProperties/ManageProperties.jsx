@@ -4,9 +4,9 @@ import useAxios from "../../../CustomHocks/useAxios";
 import LoadingRing from "../../../SharedComponents/LoadingRing/LoadingRing";
 import { ResponsiveTable } from "responsive-table-react";
 
-import { MdOutlineCancel, MdOutlineVerified, MdVerified } from 'react-icons/md';
+import { MdOutlineCancel, MdVerified } from 'react-icons/md';
 import { FcAcceptDatabase } from 'react-icons/fc';
-import './ManageProperties.css'
+
 import Swal from "sweetalert2";
 
 const ManageProperties = () => {

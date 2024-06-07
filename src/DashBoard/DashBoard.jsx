@@ -45,6 +45,17 @@ const DashBoard = () => {
                                     <FaHome /> Manage Properties
                                 </button>
                             </NavLink>
+                            <NavLink to={'/dashBoard/manageUser'}>
+                                <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
+                                    <FaHome /> Manage User
+                                </button>
+                            </NavLink>
+                           
+                            <NavLink to={'/dashBoard/manageReview'}>
+                                <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
+                                    <FaHome /> Manage Review
+                                </button>
+                            </NavLink>
                         </div>
                     ) : null}
 

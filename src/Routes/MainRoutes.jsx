@@ -27,6 +27,8 @@ import RequestedProperty from "../DashBoard/AgentHome/RequestedProperty/Requeste
 import PaymentPage from "../DashBoard/UserHome/PaymentPage/PaymentPage";
 import ManageProperties from "../DashBoard/AdminHome/ManageProperties/ManageProperties";
 import AdminRoutes from "./AdminRoutes/AdminRoutes";
+import ManageUser from "../DashBoard/AdminHome/ManageUser/ManageUser";
+import ManageReview from "../DashBoard/AdminHome/ManageReview/ManageReview";
 
 
 
@@ -96,11 +98,19 @@ const router = createBrowserRouter([
 
       {
         path: "/dashBoard/adminHome",
-        element: <AdminHome></AdminHome>,
+        element:<AdminRoutes> <AdminHome></AdminHome></AdminRoutes>,
       },
       {
         path: "/dashBoard/manageProperties",
         element: <AdminRoutes><ManageProperties></ManageProperties></AdminRoutes>,
+      },
+      {
+        path: "/dashBoard/manageUser",
+        element: <AdminRoutes><ManageUser></ManageUser></AdminRoutes>,
+      },
+      {
+        path: "/dashBoard/manageReview",
+        element: <AdminRoutes><ManageReview></ManageReview></AdminRoutes>,
       },
 
 
