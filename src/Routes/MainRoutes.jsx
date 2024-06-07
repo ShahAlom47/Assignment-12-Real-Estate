@@ -29,6 +29,7 @@ import ManageProperties from "../DashBoard/AdminHome/ManageProperties/ManageProp
 import AdminRoutes from "./AdminRoutes/AdminRoutes";
 import ManageUser from "../DashBoard/AdminHome/ManageUser/ManageUser";
 import ManageReview from "../DashBoard/AdminHome/ManageReview/ManageReview";
+import MySoldProperty from "../DashBoard/AgentHome/MySoldProperty/MySoldProperty";
 
 
 
@@ -135,6 +136,10 @@ const router = createBrowserRouter([
       {
         path: "/dashBoard/requestedProperty",
         element: <AgentRoutes><RequestedProperty></RequestedProperty></AgentRoutes>,
+      },
+      {
+        path: "/dashBoard/soldProperty",
+        element: <AgentRoutes><MySoldProperty></MySoldProperty></AgentRoutes>,
       },
 
 

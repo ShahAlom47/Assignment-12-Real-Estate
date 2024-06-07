@@ -76,7 +76,7 @@ const DashBoard = () => {
                             <MdBookmarkAdded /> My Added Property
                             </button>
                         </NavLink>
-                        <NavLink to={'/dashBoard/agentHome'}>
+                        <NavLink to={'/dashBoard/soldProperty'}>
                             <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
                             <MdOutlineSell /> My Sold Property
                             </button>

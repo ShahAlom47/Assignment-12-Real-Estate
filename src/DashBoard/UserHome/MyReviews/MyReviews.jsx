@@ -60,8 +60,10 @@ const handelDelete=async(id)=>{
     
     return (
         <div className="p-8 ">
-        <div className=" border-b-2 pb-3">
+        <div className=" border-b-2 pb-3 flex justify-between">
             <h1 className="text-3xl font-bold">My Reviews</h1>
+            <h1 className="text-xl font-bold">Total:{data?.length||0}</h1>
+
         </div>
 
         <div>
