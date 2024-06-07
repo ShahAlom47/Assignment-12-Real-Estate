@@ -4,13 +4,14 @@ import useAxios from "../../../CustomHocks/useAxios";
 import LoadingRing from "../../../SharedComponents/LoadingRing/LoadingRing";
 import { ResponsiveTable } from "responsive-table-react";
 
-import { MdOutlineCancel } from 'react-icons/md';
+import { MdOutlineCancel, MdOutlineVerified, MdVerified } from 'react-icons/md';
 import { FcAcceptDatabase } from 'react-icons/fc';
 import './ManageProperties.css'
+import Swal from "sweetalert2";
 
 const ManageProperties = () => {
     const axiosSecure = useAxios();
-    const { data, isLoading } = useQuery({
+    const { data, isLoading ,refetch} = useQuery({
         queryKey: ['allPropertyAdmin'],
         queryFn: async () => {
             const res = await axiosSecure.get('/allProperty');
@@ -20,11 +21,22 @@ const ManageProperties = () => {
 
     console.log(data);
 
-    const handleAccept=(id)=>{
-
+    const handelStatus = async (id, status) => {
+        const res = await axiosSecure.patch(`/property/admin/verify/${id}`,{status})
+        console.log(res.data);
+        if(res.data?.modifiedCount>0){
+            refetch()
+            Swal.fire(`Property ${status}  `)
+        }
 
     }
-    const handleReject=(id)=>{
+
+    const handleAccept = (id) => {
+        handelStatus(id, 'verified')
+
+    }
+    const handleReject = (id) => {
+        handelStatus(id, 'rejected')
 
 
     }
@@ -50,6 +62,7 @@ const ManageProperties = () => {
             "id": "price",
             "text": "Price Range"
         },
+      
         {
             "id": "accept",
             "text": "Accept"
@@ -58,6 +71,7 @@ const ManageProperties = () => {
             "id": "reject",
             "text": "Reject"
         }
+       
     ];
 
     const tableData = data ? data.map(item => ({
@@ -66,7 +80,8 @@ const ManageProperties = () => {
         agent: item.agent_name,
         agentEmail: item.agent_email,
         price: item.price_range,
-        accept: <button className='text-2xl ' onClick={() => handleAccept(item._id)}><FcAcceptDatabase /></button>,
+        accept:item.verification_status==='verified'?<MdVerified className="text-2xl text-green-500" />:<button className='text-2xl ' onClick={() => handleAccept(item._id)}><FcAcceptDatabase /></button>,
+      
         reject: <button className='text-2xl text-red-500 ' onClick={() => handleReject(item._id)}><MdOutlineCancel className=' mx-auto' /></button>
     })) : [];
 
@@ -78,9 +93,9 @@ const ManageProperties = () => {
 
             {
                 isLoading ? <LoadingRing /> :
-                <div className='adminProperty'>
-                    <ResponsiveTable columns={columns} data={tableData} />
-                </div>
+                    <div className='adminProperty my-6'>
+                        <ResponsiveTable columns={columns} data={tableData} />
+                    </div>
             }
         </div>
     );
