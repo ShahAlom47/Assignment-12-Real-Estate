@@ -35,14 +35,14 @@ const Register = () => {
             setPassErr('Password must be 6 characters or longer')
             return
         }
-        // else if (!/[A-Z]/.test(data.password)) {
-        //     setPassErr('Use an uppercase letter')
-        //     return
-        // }
-        // else if (!/[a-z]/.test(data.password)) {
-        //     setPassErr('Use an lowercase letter')
-        //     return
-        // }
+        else if (!/[A-Z]/.test(data.password)) {
+            setPassErr('Use an uppercase letter')
+            return
+        }
+        else if (!/[!@#$%^&*(),.?":{}|<>]/.test(data.password)) {
+            setPassErr('Use a special character (!@#$%^&*(),.?":{}|<>)');
+            return;
+}
 
         else {
             setPassErr('')

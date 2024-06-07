@@ -12,12 +12,18 @@ import useUser from "../../../CustomHocks/useUser";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
+import { getAuth, fetchSignInMethodsForEmail } from "firebase/auth"; 
+import auth from "../../../../firebase.config";
+import firebase from "firebase/compat/app";
+
+
 
 
 const Login = () => {
     const [showPass,setShowPass]=useState(false)
     const [errMsg,setErrMsg]=useState('')
     const [passErr,setPassErr]=useState('')
+    const [emailErr,setEmailErr]=useState('')
     const {loginUser}=useUser();
     const navigate=useNavigate()
     const location=useLocation()
@@ -25,23 +31,17 @@ const Login = () => {
 
 
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         setErrMsg('')
         setPassErr('')
+        setEmailErr('')
 
         if(data.password.length<6){
 
             setPassErr('Password must be 6 characters or longer')
             return
         }
-        // else if (!/[A-Z]/.test(data.password)) {
-        //     setPassErr('Use an uppercase letter')
-        //     return
-        // }
-        // else if (!/[a-z]/.test(data.password)) {
-        //     setPassErr('Use an lowercase letter')
-        //     return
-        // }
+       
         // else if(!data.captcha){
         //     setPassErr('')
         //     setErrMsg('Type the Captcha')
@@ -54,19 +54,50 @@ const Login = () => {
         // }
 
         else{
-            loginUser(data.email,data.password)
-            .then(()=>{
-                toast.success("Login success")
-                setTimeout(() => {
-                    navigate(location.state ? location.state : '/')
-                }, 1000);
-            })
-            .catch((error) => {
-                const errorMessage = error.message;
-                setErrMsg(errorMessage)
-                toast.error(errorMessage)
+            try {
+                const methods = await fetchSignInMethodsForEmail(auth,data.email);
+                console.log(methods,data.email);
+                if (methods.length === 0) {
+                    setEmailErr("Email doesn't match");
+                    return;
+                }
+    
+                loginUser(data.email, data.password)
+                    .then((res) => {
+                        console.log(res);
+                        toast.success("Login success");
+                        setTimeout(() => {
+                            navigate(location.state ? location.state : '/');
+                        }, 1000);
+                    })
+                    .catch((error) => {
+                        if (error.code === 'auth/wrong-password') {
+                            setPassErr('Incorrect password');
+                        } else {
+                            setErrMsg('Login failed: ' + error.message);
+                            toast.error('Login failed: ' + error.message);
+                        }
+                    });
+            } catch (error) {
+                setErrMsg('An error occurred: ' + error.message);
+            }
 
-            });
+            // ====================
+            // loginUser(data.email,data.password)
+            // .then((res)=>{
+            //     console.log(res);
+            //     toast.success("Login success")
+            //     setTimeout(() => {
+            //         navigate(location.state ? location.state : '/')
+            //     }, 1000);
+            // })
+            // .catch((error) => {
+            //     const errorMessage = error.message;
+            //     console.log(error);
+            //     setErrMsg(errorMessage)
+            //     toast.error(errorMessage)
+
+            // });
         }
        
 
@@ -108,6 +139,7 @@ const Login = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70"><path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" /><path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" /></svg>
                             <input type="email" className="grow" placeholder="Email" {...register("email", { required: true })}  />
                         </label>
+                        <div className="w-full"> <p className="text-red-500">{emailErr}</p></div>
                         <label className="relative input input-bordered flex items-center gap-2 w-full rounded-sm">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70"><path fillRule="evenodd" d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z" clipRule="evenodd" /></svg>
                             <input type={showPass?'text':'password'} className="grow" placeholder="Password" {...register("password", { required: true })}  />

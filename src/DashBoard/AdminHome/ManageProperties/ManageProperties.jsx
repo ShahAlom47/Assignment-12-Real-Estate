@@ -8,6 +8,7 @@ import { MdOutlineCancel, MdVerified } from 'react-icons/md';
 import { FcAcceptDatabase } from 'react-icons/fc';
 
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const ManageProperties = () => {
     const axiosSecure = useAxios();
@@ -87,6 +88,9 @@ const ManageProperties = () => {
 
     return (
         <div className="p-8">
+             <Helmet>
+                <title>HONEST || Dashboard || Manage Property</title>
+            </Helmet>
             <div className="border-b-2 pb-3">
                 <h1 className="text-3xl font-bold">Manage Properties</h1>
             </div>

@@ -4,62 +4,72 @@ import usePhotoHost from "../../../CustomHocks/usePhotoHost";
 import useAxios from "../../../CustomHocks/useAxios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import useUserRole from "../../../CustomHocks/useUserRole";
 
 
 const AddProperty = () => {
 
     const { user } = useUser()
     const [handelHost] = usePhotoHost();
-    const axiosSecure= useAxios()
+    const { data: userRole } = useUserRole()
+    const axiosSecure = useAxios()
     const navigate = useNavigate()
 
-    const { register, handleSubmit,reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
 
     const onSubmit = async (data) => {
+        console.log(userRole,userRole === 'fraud');
+        if (userRole === 'fraud') {
+            Swal.fire("You can not  add property ")
+            return
+        }
+
         const imageFile = { image: data.property_image[0] }
         const res = await handelHost(imageFile)
+      
+
 
         if (res.success) {
             const propertyData = {
-                title:data.title ,
-                description:data.description ,
-                price_range:data.price_range ,
-                agent_name:user.displayName ,
-                agent_photo:user.photoURL ,
-                agent_email:user.email ,
-                property_image:res.data.display_url ,
-                property_location:data.property_location ,
-                verification_status:'pending' ,
-                property_type:data.property_type ,
-                bedrooms:data.bedrooms ,
-                bathrooms:data.bathrooms ,
-                square_feet:data.square_feet ,
-                year_built:data.year_built ,
+                title: data.title,
+                description: data.description,
+                price_range: data.price_range,
+                agent_name: user.displayName,
+                agent_photo: user.photoURL,
+                agent_email: user.email,
+                property_image: res.data.display_url,
+                property_location: data.property_location,
+                verification_status: 'pending',
+                property_type: data.property_type,
+                bedrooms: data.bedrooms,
+                bathrooms: data.bathrooms,
+                square_feet: data.square_feet,
+                year_built: data.year_built,
             }
 
-            const response = await axiosSecure.post('/addProperty',propertyData)
-            if(response.data.insertedId){
+            const response = await axiosSecure.post('/addProperty', propertyData)
+            if (response.data.insertedId) {
                 reset();
                 Swal.fire({
                     title: "Added property successfully",
-                   
+
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
                     confirmButtonText: "My Added Property"
-                  }).then((result) => {
+                }).then((result) => {
                     if (result.isConfirmed) {
-                    navigate('/dashBoard/myAddedProperty')
+                        navigate('/dashBoard/myAddedProperty')
                     }
-                  });
-                
+                });
+
             }
 
 
             console.log(propertyData);
         }
-// console.log(res);
+        // console.log(res);
 
     }
 
