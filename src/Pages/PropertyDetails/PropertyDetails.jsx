@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { Link, useLocation, useParams } from "react-router-dom";
 import useAxiosPublic from "../../CustomHocks/useAxiosPublic";
 import LoadingRing from "../../SharedComponents/LoadingRing/LoadingRing";
@@ -18,6 +18,7 @@ import useAxios from "../../CustomHocks/useAxios";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import useAddWish from "../../CustomHocks/useAddWish";
+import Swal from "sweetalert2";
 
 
 const PropertyDetails = () => {
@@ -27,7 +28,7 @@ const PropertyDetails = () => {
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxios();
     const location = useLocation();
-    const [addWishList]=useAddWish()
+    const [addWishList] = useAddWish()
 
 
     const { data, isLoading, error } = useQuery({
@@ -38,7 +39,7 @@ const PropertyDetails = () => {
         }
     })
 
-    const {refetch, data: reviewData } = useQuery({
+    const { refetch, data: reviewData } = useQuery({
         queryKey: ['reviewData'],
         queryFn: async () => {
             const res = await axiosPublic.get(`/reviews/${id}`)
@@ -46,21 +47,24 @@ const PropertyDetails = () => {
         }
     })
 
+
     console.log(reviewData);
+
     useEffect(() => {
         setReviewErr(false)
     }, [])
 
-    const handelWishList=async()=>{
-        const res =await addWishList(data)
-        console.log(res)
-        if(res.insertedId){
-          toast.success('Successfully added to wishlist')
-        
+    const handelWishList = async () => {
+        const res = await addWishList(data)
+
+        if (res.insertedId) {
+            toast.success('Successfully added to wishlist')
+
         }
-        else if(res.message==='Wishlist item already exists'  ){
-          toast.info('This property already exists your List')}
-      }
+        else if (res.message === 'Wishlist item already exists') {
+            toast.info('This property already exists your List')
+        }
+    }
 
 
     const handelReview = () => {
@@ -69,9 +73,27 @@ const PropertyDetails = () => {
             setReviewErr(true)
             return
         }
+
+        else if (!data) {
+            Swal.fire('Property information not available')
+        }
         document.getElementById('my_modal_5').showModal()
     }
+
+    const addReviewMutation = useMutation({
+        mutationFn: async (reviewData) => {
+            const res = await axiosSecure.post('/addReview', { reviewData })
+            return res.data
+
+        }
+
+
+    })
+
+
+
     const handelReviewForm = async (e) => {
+
         e.preventDefault()
         const form = e.target;
         const review = form.review.value;
@@ -88,16 +110,29 @@ const PropertyDetails = () => {
             date: new Date().toISOString(),
 
         }
-        // console.log(reviewData);
-        const res = await axiosSecure.post('/addReview', { reviewData })
-        console.log(res.data);
 
-        if (res.data.insertedId) {
-            form.reset()
-            toast.success('Review Completed')
-            refetch()
-            document.getElementById('my_modal_5').close();
-        }
+
+        addReviewMutation.mutate(reviewData, {
+            onSuccess: () => {
+                form.reset()
+                toast.success('Review Completed')
+                refetch()
+                document.getElementById('my_modal_5').close();
+
+            }
+        })
+
+
+        // ==========================
+        // const res = await axiosSecure.post('/addReview', { reviewData })
+        //         if (res.data.insertedId) {
+        //             form.reset()
+        //             toast.success('Review Completed')
+        //             refetch()
+        //             document.getElementById('my_modal_5').close();
+        //         }
+
+        // =======================
     }
 
     // const dateObject = new Date(ra);
@@ -246,7 +281,7 @@ const PropertyDetails = () => {
                             <h1 className="font-bold text-xl">${data?.min_price}-${data?.max_price}</h1>
                         </div>
                         <div className="flex justify-between mt-3">
-                            <Link><button  onClick={()=>handelWishList()} className="flex gap-1 items-center hover:text-red-600"> <GoStar /> Add to Wishlist</button></Link>
+                            <Link><button onClick={() => handelWishList()} className="flex gap-1 items-center hover:text-red-600"> <GoStar /> Add to Wishlist</button></Link>
                             <Link><button data-tooltip-id="my-tooltip" data-tooltip-content="Share"  ><CiShare2 /></button></Link>
                             <Tooltip id="my-tooltip" className='z-20' />
                         </div>

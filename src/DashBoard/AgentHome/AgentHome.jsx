@@ -4,7 +4,7 @@ import UserProfileLayout from "../../SharedComponents/UserProfileLayout/UserProf
 
 const AgentHome = () => {
     return (
-        <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 bg-yellow-50 lg:min-h-screen">
+        <div className=" bg-yellow-50 lg:min-h-screen">
            <Helmet>
                 <title>HONEST || Dashboard || Agent Home </title>
             </Helmet>

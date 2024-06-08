@@ -22,8 +22,12 @@ const PropertyCard = ({card,idx}) => {
     const [addWishList]=useAddWish()
 
     const handelWishList=async(card)=>{
+
+       
+
+
       const res =await addWishList(card)
-      console.log(res)
+    
       if(res.insertedId){
         toast.success('Successfully added to wishlist')
       

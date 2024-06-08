@@ -91,6 +91,7 @@ const WishList = () => {
                                       <Link to={`/dashBoard/makeOffer/${wish.property_id}`}><button className="btn btn-sm border  rounded-sm border-yellow-600">Make an offer</button></Link>
                                       <button onClick={()=>handelDelete(wish._id) } className="btn btn-sm border  rounded-sm border-red-500">Delete</button>
                                       </div>
+                                      <p></p>
                                     </div>
                                 </div>
                             </div>
