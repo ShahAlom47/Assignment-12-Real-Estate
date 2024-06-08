@@ -25,7 +25,7 @@ const WishList = () => {
         }
     })
 
-    console.log(data);
+   
 
     const handelDelete =async(id)=>{
 
@@ -43,7 +43,6 @@ const WishList = () => {
             if (result.isConfirmed) {
                 const res= await axiosSecure.delete(`/wishList/delete/${id}`)
 
-                console.log(res.data.deletedCount);
                 if(res.data.deletedCount){
                     refetch()
                     Swal.fire({

@@ -8,8 +8,7 @@ import PropTypes from 'prop-types';
 export default function ErrorPage({ btn }) {
   const navigate = useNavigate()
   const error = useRouteError();
-  console.error(error);
-  console.log(btn);
+ 
 
 
   return (

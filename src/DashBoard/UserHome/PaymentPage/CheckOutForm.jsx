@@ -54,7 +54,6 @@ const [price,setPrice]=useState(0)
               setClientSecret(response.data.clientSecret);
               setErrMsg('')
             } catch (error) {
-            //   console.error( error.response.data.error);
               setErrMsg( error?.response?.data?.error)
              
             }
@@ -90,7 +89,6 @@ const [price,setPrice]=useState(0)
 
         if (error) {
             setErrMsg(error.message)
-            // console.log('[error]', error);
         } else {
             // console.log('[PaymentMethod]', paymentMethod);
         }
@@ -125,7 +123,7 @@ const [price,setPrice]=useState(0)
                 }
 
                 const response = await axiosPublic.post('/paymentHistory', paymentData)
-                console.log(response.data);
+            
                 if (response.data?.modifiedCount===1) {
                  
                     Swal.fire("Payment Completed");

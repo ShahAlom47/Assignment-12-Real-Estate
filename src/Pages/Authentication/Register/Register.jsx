@@ -56,7 +56,7 @@ const Register = () => {
                         const userInfo = { email: data.email, name: data.name,photoURL:auth.currentUser.photoURL }
                         axiosPublic.post('/addUser', userInfo)
                             .then(res => {
-                                console.log(res);
+                              
                                 if (res.data.insertedId|| res.data.message==='user already exist') {
                                     toast.success('user created successfully  ')
                                         reset()

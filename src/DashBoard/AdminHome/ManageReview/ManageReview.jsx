@@ -16,7 +16,7 @@ const ManageReview = () => {
         }
     });
 
-    console.log(data);
+  
 
     const dateFormat=(date)=>{
         const dates = new Date(date);

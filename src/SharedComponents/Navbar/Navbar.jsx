@@ -37,7 +37,7 @@ const Navbar = () => {
     }, [user, axiosSecure]);
 
 
-    // console.log(data, 'is');
+ 
 
     const handelLogOut = () => {
         logOutUser()

@@ -39,24 +39,24 @@ const Login = () => {
             return
         }
        
-        // else if(!data.captcha){
-        //     setPassErr('')
-        //     setErrMsg('Type the Captcha')
-        //     return
-        // }
-        // else if(!validateCaptcha(data.captcha)){
-        //     setPassErr('')
-        //     setErrMsg('Captcha not matched')
-        //     return
-        // }
+        else if(!data.captcha){
+            setPassErr('')
+            setErrMsg('Type the Captcha')
+            return
+        }
+        else if(!validateCaptcha(data.captcha)){
+            setPassErr('')
+            setErrMsg('Captcha not matched')
+            return
+        }
 
         else{
            
 
             // ====================
             loginUser(data.email,data.password)
-            .then((res)=>{
-                console.log(res);
+            .then(()=>{
+               
                 toast.success("Login success")
                 setTimeout(() => {
                     navigate(location.state ? location.state : '/')
@@ -64,7 +64,7 @@ const Login = () => {
             })
             .catch((error) => {
                 // const errorMessage = error.message;
-                console.log(error.message==='Firebase: Error (auth/invalid-credential).');
+              
                 if(error.message=='Firebase: Error (auth/invalid-credential).'){
                     setErrMsg("Email or password do not match. Please check again")
                 toast.error('Email or password do not match. Please check again')

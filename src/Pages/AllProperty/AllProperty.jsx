@@ -17,10 +17,10 @@ const AllProperty = () => {
     useEffect(() => {
         axiosSecure.get(`/allProperty?sort=${sortValue}&search=${searchValue}`)
             .then(response =>{ 
-                console.log(response.data) 
+             
                 setData(response.data)})
           
-            .catch(error => console.error('Error fetching data:', error));
+          
     }, [sortValue, searchValue,axiosSecure]);
 
 

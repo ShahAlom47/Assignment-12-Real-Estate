@@ -22,7 +22,7 @@ const MyAddedProperty = () => {
         }
     })
 
-    console.log(data)
+   
 
 
 
@@ -59,7 +59,7 @@ const MyAddedProperty = () => {
 
     }
 
-    console.log(location.pathname);
+  
 
     return (
         <div className="p-8 ">

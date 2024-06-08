@@ -37,7 +37,7 @@ const SocialLogin = () => {
                 const userInfo = { email: res.user?.email, name: res.user?.displayName, photoURL: res?.user?.photoURL }
                 axiosPublic.post('/addUser', userInfo)
                     .then(res => {
-                        console.log(res);
+                     
                         if (res.data.insertedId|| res.data.message==='user already exist') {
                             toast.success('login successfully ')
 

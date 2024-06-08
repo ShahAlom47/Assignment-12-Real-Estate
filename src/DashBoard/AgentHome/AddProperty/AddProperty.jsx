@@ -27,7 +27,7 @@ const AddProperty = () => {
 
 
     const onSubmit = async (data) => {
-        console.log(userRole,userRole === 'fraud');
+      
         if (userRole === 'fraud') {
             Swal.fire("You can not  add property ")
             return

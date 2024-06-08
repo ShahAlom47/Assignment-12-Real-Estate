@@ -67,7 +67,7 @@ const EditForm = () => {
 
     const onSubmit = async data => {
         let updatedImageUrl = imagePreview;
-        console.log(data.property_image[0]);
+       
 
         if (data.property_image && data.property_image[0]) {
 
@@ -79,7 +79,7 @@ const EditForm = () => {
             }
 
 
-            // console.log(updatedImageUrl);
+           
         }
 
         const updatedData = {

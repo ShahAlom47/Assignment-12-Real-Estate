@@ -68,7 +68,7 @@ const ManageUser = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 const res = await axiosSecure.delete(`/user/admin/delete/${id}`)
-                console.log(res.data);
+              
                 if (res.data?.deletedCount > 0) {
                     refetch()
                     Swal.fire({
@@ -80,7 +80,7 @@ const ManageUser = () => {
             }
         });
 
-        console.log(id);
+       
     }
 
     const columns = [

@@ -48,7 +48,7 @@ const PropertyDetails = () => {
     })
 
 
-    console.log(reviewData);
+   
 
     useEffect(() => {
         setReviewErr(false)

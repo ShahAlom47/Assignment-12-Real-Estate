@@ -33,7 +33,7 @@ const Enquiry = () => {
             reset();
         }
 
-        console.log(res.data)
+      
 
     }
 

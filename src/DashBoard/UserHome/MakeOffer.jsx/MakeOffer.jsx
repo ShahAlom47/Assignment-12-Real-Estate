@@ -37,7 +37,7 @@ const MakeOffer = () => {
     const maxPriceIs = data?.max_price;
 
 
-    console.log(minPriceIs,maxPriceIs);
+
 
 
 
@@ -126,7 +126,7 @@ const MakeOffer = () => {
             //         navigate('/dashBoard/userWishList')
             //       }, 1500);
             // }
-            // console.log(res.data);
+           
 
         }
 

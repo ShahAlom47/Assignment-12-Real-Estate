@@ -19,7 +19,7 @@ const MySoldProperty = () => {
         }
     });
 
-    console.log(data);
+ 
 
     const totalPrice =data?.reduce((acc, curr) => acc + parseFloat(curr.price), 0);
 

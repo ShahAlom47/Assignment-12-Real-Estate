@@ -36,7 +36,7 @@ const ReviewSec = () => {
         setLatest(true)
     }
 
-    console.log(data);
+  
     useEffect(() => {
         if (isSmall) {
             setSlideItem(1);

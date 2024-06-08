@@ -9,7 +9,7 @@ const AgentRoutes = ({children}) => {
     const {data,isPending}=useUserRole()
     const location=useLocation()
 
-   console.log(data);
+   
 
     if (loading||isPending) {
         return <LoadingRing></LoadingRing>

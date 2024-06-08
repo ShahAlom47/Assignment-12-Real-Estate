@@ -22,7 +22,7 @@ const RequestedProperty = () => {
 
     const requestedPropertyMutation = useMutation({
         mutationFn: async ({id, vStatus}) => {
-            console.log(vStatus);
+           
             const res = await axiosSecure.patch(`/offeredProperty/status/${id}`, vStatus)
             return res.data
         }
@@ -42,7 +42,7 @@ const RequestedProperty = () => {
         // const res = await axiosSecure.patch(`/offeredProperty/status/${id}`, vStatus)
         // if(res.data.modifiedCount>0){
         //     refetch()
-        //     console.log(id, vStatus);
+        //    
         //   vStatus.verification_status==='accepted' ? toast.success('Offer Accepted'):toast.error('Offer Rejected')
         // }
       
