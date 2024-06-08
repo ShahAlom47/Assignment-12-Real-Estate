@@ -69,11 +69,11 @@ const Navbar = () => {
     const dashNav = <>
 
 
-        {user && data ==='agent' ? (<NavLink to={'/dashBoard/agentHome'}><li className="border-b-2 flex flex-row items-center"> <span><MdDashboard /></span>Agent DashBoard</li></NavLink>) : null}
+        {user && data ==='agent' ? (<NavLink to={'/dashBoard/agentHome'}><li className="border-b-2 flex flex-row items-center"> <span><MdDashboard /></span> DashBoard</li></NavLink>) : null}
 
-        {user && data ==='admin' ? (<NavLink to={'/dashBoard/adminHome'}><li className="border-b-2 flex flex-row items-center"> <span><MdDashboard /></span>Admin DashBoard</li></NavLink>) : null}
+        {user && data ==='admin' ? (<NavLink to={'/dashBoard/adminHome'}><li className="border-b-2 flex flex-row items-center"> <span><MdDashboard /></span> DashBoard</li></NavLink>) : null}
 
-        {user && data !== 'agent' && data !== 'admin' ? (<NavLink to={'/dashBoard/userHome'}><li className="border-b-2 flex flex-row items-center"> <span><MdDashboard /></span>User DashBoard</li></NavLink>) : null}
+        {user && data !== 'agent' && data !== 'admin' ? (<NavLink to={'/dashBoard/userHome'}><li className="border-b-2 flex flex-row items-center"> <span><MdDashboard /></span> DashBoard</li></NavLink>) : null}
 
 
     </>
