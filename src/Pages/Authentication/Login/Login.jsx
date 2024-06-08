@@ -12,9 +12,6 @@ import useUser from "../../../CustomHocks/useUser";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-import { getAuth, fetchSignInMethodsForEmail } from "firebase/auth"; 
-import auth from "../../../../firebase.config";
-import firebase from "firebase/compat/app";
 
 
 
@@ -54,50 +51,58 @@ const Login = () => {
         // }
 
         else{
-            try {
-                const methods = await fetchSignInMethodsForEmail(auth,data.email);
-                console.log(methods,data.email);
-                // if (methods.length === 0) {
-                //     setEmailErr("Email doesn't match");
-                //     return;
-                // }
-    
-                loginUser(data.email, data.password)
-                    .then((res) => {
-                        console.log(res);
-                        toast.success("Login success");
-                        setTimeout(() => {
-                            navigate(location.state ? location.state : '/');
-                        }, 1000);
-                    })
-                    .catch((error) => {
-                        if (error.code === 'auth/wrong-password') {
-                            setPassErr('Incorrect password');
-                        } else {
-                            setErrMsg('Login failed: ' + error.message);
-                            toast.error('Login failed: ' + error.message);
-                        }
-                    });
-            } catch (error) {
-                setErrMsg('An error occurred: ' + error.message);
-            }
+           
 
             // ====================
-            // loginUser(data.email,data.password)
-            // .then((res)=>{
-            //     console.log(res);
-            //     toast.success("Login success")
-            //     setTimeout(() => {
-            //         navigate(location.state ? location.state : '/')
-            //     }, 1000);
-            // })
-            // .catch((error) => {
-            //     const errorMessage = error.message;
-            //     console.log(error);
-            //     setErrMsg(errorMessage)
-            //     toast.error(errorMessage)
+            loginUser(data.email,data.password)
+            .then((res)=>{
+                console.log(res);
+                toast.success("Login success")
+                setTimeout(() => {
+                    navigate(location.state ? location.state : '/')
+                }, 1000);
+            })
+            .catch((error) => {
+                // const errorMessage = error.message;
+                console.log(error.message==='Firebase: Error (auth/invalid-credential).');
+                if(error.message=='Firebase: Error (auth/invalid-credential).'){
+                    setErrMsg("Email or password do not match. Please check again")
+                toast.error('Email or password do not match. Please check again')
+                }
+                // setErrMsg(errorMessage)
+                // toast.error(errorMessage)
 
-            // });
+            });
+
+            // ===================
+
+             // try {
+            //     const methods = await fetchSignInMethodsForEmail(auth,data.email);
+            //     console.log(methods,data.email);
+            //     // if (methods.length === 0) {
+            //     //     setEmailErr("Email doesn't match");
+            //     //     return;
+            //     // }
+    
+            //     loginUser(data.email, data.password)
+            //         .then((res) => {
+            //             console.log(res);
+            //             toast.success("Login success");
+            //             setTimeout(() => {
+            //                 navigate(location.state ? location.state : '/');
+            //             }, 1000);
+            //         })
+            //         .catch((error) => {
+            //             if (error.code === 'auth/wrong-password') {
+            //                 setPassErr('Incorrect password');
+            //             } else {
+            //                 setErrMsg('Login failed: ' + error.message);
+            //                 toast.error('Login failed: ' + error.message);
+            //             }
+            //         });
+            // } catch (error) {
+            //     setErrMsg('An error occurred: ' + error.message);
+            // }
         }
        
 

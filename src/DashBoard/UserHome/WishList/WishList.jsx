@@ -76,7 +76,7 @@ const WishList = () => {
                                     <h2 className="card-title">{wish.title}</h2>
                                     <p className="flex items-center"> <CiLocationOn /> {wish.property_location}</p>
 
-                                    <p className="font-semibold">{wish.price_range}</p>
+                                    <p className="font-semibold">${wish.min_price}-${wish.max_price}</p>
                                     <h2 className={` w-24 text-center rounded-sm ${wish.verification_status==='Verified'? 'bg-green-500': 'bg-yellow-500'}`}>{wish.verification_status}</h2>
 
                                    

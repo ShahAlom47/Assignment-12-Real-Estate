@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import {  useEffect, useState } from "react";
+import {  useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../../CustomHocks/useAxios";
 import useUser from "../../../CustomHocks/useUser";
@@ -16,8 +16,8 @@ const MakeOffer = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [price, setPrice] = useState('');
     const [isValid, setIsValid] = useState(true);
-    const [minPriceIs,setMinPriceIs]=useState(0) 
-    const [maxPriceIs,setMaxPriceIs]=useState(0) 
+    // const [minPriceIs,setMinPriceIs]=useState(0) 
+    // const [maxPriceIs,setMaxPriceIs]=useState(0) 
     const navigate =useNavigate()
     
     const { id } = useParams();
@@ -31,23 +31,24 @@ const MakeOffer = () => {
         }
     })
 
-
-    useEffect(() => {
-        if (data.price_range) {
-            const price_range = data?.price_range;
-            console.log(price_range);
-                const cleanPriceRange = price_range.replace(/\$/g, '');
+const minPriceIs=data.min_price;
+const maxPriceIs=data.max_price;
+    // useEffect(() => {
+    //     if (data.price_range) {
+    //         const price_range = data?.price_range;
+    //         console.log(price_range);
+    //             const cleanPriceRange = price_range.replace(/\$/g, '');
 
                 
-                    const [minPrices, maxPrices] = cleanPriceRange.split('-');
-                    const minPrice = parseInt(minPrices.trim().replace(/,/g, ''));
-                    const maxPrice = parseInt(maxPrices.trim().replace(/,/g, ''));
-                    setMaxPriceIs(maxPrice);
-                    setMinPriceIs(minPrice);
+    //                 const [minPrices, maxPrices] = cleanPriceRange.split('-');
+    //                 const minPrice = parseInt(minPrices.trim().replace(/,/g, ''));
+    //                 const maxPrice = parseInt(maxPrices.trim().replace(/,/g, ''));
+    //                 setMaxPriceIs(maxPrice);
+    //                 setMinPriceIs(minPrice);
                  
             
-        }
-    }, [data]);
+    //     }
+    // }, [data]);
 
  
 
@@ -57,7 +58,6 @@ const MakeOffer = () => {
       
 
         const inputPrice = e.target.value;
-        console.log(inputPrice,isValid);
         setPrice(inputPrice);
 
         const cleanedPrice = parseInt(inputPrice.replace(/[^0-9]/g, ''), 10);

@@ -79,7 +79,7 @@ const MyAddedProperty = () => {
                                     <h2 className="card-title">{property.title}</h2>
                                     <p className="flex items-center"> <CiLocationOn /> {property.property_location}</p>
 
-                                    <p className="font-semibold">{property.price_range}</p>
+                                    <p className="font-semibold">${property.min_price}-${property.max_price}</p>
                                     <h2 className={` w-24 text-center rounded-sm
                                      ${property.verification_status === 'verified' ? 'bg-green-500' : ''}
                                      ${property.verification_status === 'pending' ? 'bg-yellow-500' : ''}

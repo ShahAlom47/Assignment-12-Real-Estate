@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 
 const EditForm = () => {
     const location = useLocation();
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const { id } = useParams();
     const { user } = useUser();
     const { data, isLoading } = useSingleProperty(id);
@@ -25,7 +25,8 @@ const EditForm = () => {
             title: '',
             property_location: '',
             property_type: '',
-            price_range: '',
+            max_price: '',
+            min_price: '',
             bathrooms: '',
             bedrooms: '',
             square_feet: '',
@@ -40,7 +41,8 @@ const EditForm = () => {
                 title: data.title,
                 property_location: data.property_location,
                 property_type: data.property_type,
-                price_range: data.price_range,
+                max_price: data.max_price,
+                min_price: data.min_price,
                 bathrooms: data.bathrooms,
                 bedrooms: data.bedrooms,
                 square_feet: data.square_feet,
@@ -83,7 +85,8 @@ const EditForm = () => {
         const updatedData = {
             title: data.title,
             description: data.description,
-            price_range: data.price_range,
+            max_price: data.max_price,
+            min_price: data.min_price,
             agent_name: user.displayName,
             agent_photo: user.photoURL,
             agent_email: user.email,
@@ -99,20 +102,20 @@ const EditForm = () => {
 
         const res = await axiosSecure.patch(`/updateProperty/${id}`, updatedData)
         const result = res.data;
-        if(result.modifiedCount==1){
-            alert('success')
+        if (result.modifiedCount == 1) {
+           
             Swal.fire({
                 title: " Property update  successfully",
-               
+
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
                 confirmButtonText: "Ok"
-              }).then((result) => {
+            }).then((result) => {
                 if (result.isConfirmed) {
-                navigate(location.state)
+                    navigate(location.state)
                 }
-              });
+            });
 
 
         }
@@ -120,7 +123,7 @@ const EditForm = () => {
 
 
 
-        console.log(result.modifiedCount);
+     
     };
 
     if (isLoading) {
@@ -146,8 +149,10 @@ const EditForm = () => {
                         <label className="input input-bordered flex items-center gap-2 w-full">
                             <input defaultValue={data?.property_type} {...register("property_type", { required: true })} type="text" placeholder="Property Type" className="outline-none w-full" />
                         </label>
-                        <label className="input input-bordered flex items-center gap-2 w-full">
-                            <input defaultValue={data?.price_range} {...register("price_range", { required: true })} type="text" placeholder="Price: $400 - $600" className="outline-none w-full" />
+                        <label className="input input-bordered flex items-center gap-2 w-full pr-0">
+                            Price:
+                            <input defaultValue={data?.min_price} {...register("min_price", { required: true })} type="text" placeholder="Price: $400 - $600" className=" input input-bordered outline-none w-full" />
+                            <input defaultValue={data?.max_price} {...register("max_price", { required: true })} type="text" placeholder="Price: $400 - $600" className=" input input-bordered outline-none w-full" />
                         </label>
                     </div>
                     <div className="flex gap-3">

@@ -43,18 +43,19 @@ const PropertyCard = ({card,idx}) => {
         <div>
             <ToastContainer></ToastContainer>
             <Tooltip id="my-tooltip" className='z-20' />
-             <div key={card._id} className={`card card-compact bg-base-100 shadow-xl rounded-md `}
+             <div key={card._id} className={` min-h-[500px] card card-compact bg-base-100 shadow-xl rounded-md `}
                         onMouseOver={() => handleMouseOver(idx)}
                         onMouseOut={handleMouseOut}
                     >
                         {/* ${idx % 4 === 0 || idx % 4 === 3 ? 'col-span-4 ' : 'col-span-2 '} */}
-                        <figure className='relative'>
+                        <figure className='relative  '>
                             <img
+                                className='min-h-[250px]'
                                 style={{ transition: 'transform 0.9s ease', transform: hoveredIndex === idx ? 'scale(1.10)' : 'scale(1)' }}
                                 src={card.property_image} alt="Shoes" />
                             <div
                                 style={{ transition: 'transform 0.4s ease', transform: hoveredIndex === idx ? 'translateY(-125%)' : 'translateY(-0%)' }}
-                                className="z-10 absolute flex flex-row-reverse items-center -bottom-10 left-3 ">
+                                className="z-10 flex-1 absolute flex flex-row-reverse items-center -bottom-10 left-3 ">
                                 <Link ><p className=' z-0 -ml-1 bg-white bg-opacity-50 backdrop-filter backdrop-blur-md  px-2 rounded-r-sm font-semibold hover:text-red-700 text-black'>{card.agent_name}</p></Link>
                                 <img className='z-10 h-10 w-10 rounded-full border-2 ' src={card.agent_photo} alt="" />
                             </div>
@@ -87,7 +88,7 @@ const PropertyCard = ({card,idx}) => {
                             <div className="divider my-2"></div>
                             <div className="card-actions justify-between">
                                 <div>
-                                    <p className='text2xl font-bold'>{card.price_range}</p>
+                                    <p className='text2xl font-bold'>${card.min_price}-${card.max_price}</p>
                                 </div>
                                 <div className=' flex items-center gap-4 mb-3'>
                                     <div className='flex items-center gap-2'><PiBuildingsLight /> {card.square_feet}</div>

@@ -34,7 +34,8 @@ const AddProperty = () => {
             const propertyData = {
                 title: data.title,
                 description: data.description,
-                price_range: data.price_range,
+                max_price: data.max_price,
+                min_price: data.min_price,
                 agent_name: user.displayName,
                 agent_photo: user.photoURL,
                 agent_email: user.email,
@@ -98,8 +99,10 @@ const AddProperty = () => {
                         <label className={`input input-bordered flex items-center   gap-2 w-full  `}>
                             <input  {...register("property_type", { required: true })} type="text" placeholder="Property type" className={` outline-none w-full `} />
                         </label>
-                        <label className={`input input-bordered flex items-center   gap-2 w-full  `}>
-                            <input  {...register("price_range", { required: true })} type="text" placeholder="Price : $400 - $600 " className={` outline-none w-full `} />
+                        <label className={`input input-bordered flex items-center   gap-2 w-full  py-1 pr-0 `}>
+                            Price:
+                            <input  {...register("max_price", { required: true })} type="text" placeholder="max price" className={`input input-bordered outline-none w-full `} />
+                            <input  {...register("min_price", { required: true })} type="text" placeholder="min Price " className={`input input-bordered outline-none w-full `} />
                         </label>
 
                     </div>

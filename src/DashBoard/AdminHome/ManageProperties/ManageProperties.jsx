@@ -15,7 +15,8 @@ const ManageProperties = () => {
     const { data, isLoading ,refetch} = useQuery({
         queryKey: ['allPropertyAdmin'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/allProperty');
+            const res = await axiosSecure.get('/allProperty/admin');
+            
             return res.data;
         }
     });
@@ -80,7 +81,7 @@ const ManageProperties = () => {
         location: item.property_location,
         agent: item.agent_name,
         agentEmail: item.agent_email,
-        price: item.price_range,
+        price: <p>${item.min_price}-${item.max_price}</p>,
         accept:item.verification_status==='verified'?<MdVerified className="text-2xl text-green-500" />:<button className='text-2xl ' onClick={() => handleAccept(item._id)}><FcAcceptDatabase /></button>,
       
         reject: <button className='text-2xl text-red-500 ' onClick={() => handleReject(item._id)}><MdOutlineCancel className=' mx-auto' /></button>

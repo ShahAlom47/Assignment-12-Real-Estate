@@ -16,6 +16,7 @@ const AdvertiseProperty = () => {
         }
     });
 
+    console.log(data);
 
     const handelAdvertise= async (item) =>{
 
@@ -64,7 +65,7 @@ const AdvertiseProperty = () => {
         image:  <img className=" w-16 h-16 rounded-full" src={item.property_image} alt="" />,
         title: item.title,
         agent: item.agent_name,
-        price: item.price_range,
+        price: <p>${item.min_price}-{item.max_price}</p>,
         advertise:<button onClick={()=>handelAdvertise(item)} className=" btn btn-sm">Advertise</button>
 
     })) : [];
@@ -82,7 +83,7 @@ const AdvertiseProperty = () => {
            isLoading ? <LoadingRing /> :
                <div className='adminProperty my-6'>
                     <ResponsiveTable columns={columns} data={tableData} />
-                 <img src="" alt="" />
+                
                </div>
        }
    </div>

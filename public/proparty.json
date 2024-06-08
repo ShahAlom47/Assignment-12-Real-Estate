@@ -107,7 +107,8 @@
     {
       "title": "Cozy Cottage in the Countryside",
       "description": "A charming cottage in a quiet and peaceful countryside setting.",
-      "price_range": "$400,000 - $450,000",
+      "max_price": 3000,
+      "min_price": 6000,
       "agent_name": "Robert Johnson",
       "agent_photo": "https://i.ibb.co/tJXhmQP/man.jpg",
       "property_image": "https://i.ibb.co/6J8wxxS/steven-ungermann-a-RT5-UCf2-MYY-unsplash.jpg",

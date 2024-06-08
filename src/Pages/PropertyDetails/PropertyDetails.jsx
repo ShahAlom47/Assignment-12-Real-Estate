@@ -33,7 +33,7 @@ const PropertyDetails = () => {
     const { data, isLoading, error } = useQuery({
         queryKey: ['propertyDetails'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/property/${id}`)
+            const res = await axiosSecure.get(`/property/${id}`)
             return res.data
         }
     })
@@ -118,16 +118,16 @@ const PropertyDetails = () => {
             <ToastContainer />
             <div className=" h-[512px] flex gap-5 my-5">
                 <div className="h-[512px] ">
-                    <img className=" h-full" src={data.property_image} alt="" />
+                    <img className=" h-full" src={data?.property_image} alt="" />
                 </div>
                 <div className=" flex w-1/2  gap-3 h-[512px]">
                     <div className="space-y-3 flex-grow h-[500px] ">
-                        <div className=" h-1/2"><img className=" h-full" src={data.property_image} alt="" /></div>
-                        <div className="h-1/2"><img className=" h-full" src={data.property_image} alt="" /></div>
+                        <div className=" h-1/2"><img className=" h-full" src={data?.property_image} alt="" /></div>
+                        <div className="h-1/2"><img className=" h-full" src={data?.property_image} alt="" /></div>
                     </div>
                     <div className="space-y-3 h-[500px]">
-                        <div className="h-1/2"><img className=" h-full" src={data.property_image} alt="" /></div>
-                        <div className="h-1/2"><img className=" h-full" src={data.property_image} alt="" /></div>
+                        <div className="h-1/2"><img className=" h-full" src={data?.property_image} alt="" /></div>
+                        <div className="h-1/2"><img className=" h-full" src={data?.property_image} alt="" /></div>
                     </div>
                 </div>
 
@@ -136,7 +136,7 @@ const PropertyDetails = () => {
 
             <section className=" flex gap-5 ">
                 <div className=" flex-1" >
-                    <p className="inline bg-gray-300 bg-opacity-50 backdrop-filter backdrop-blur-md"> {data.verification_status}</p>
+                    <p className="inline bg-gray-300 bg-opacity-50 backdrop-filter backdrop-blur-md"> {data?.verification_status}</p>
                     <h1 className="my-2 text-3xl font-semibold">{data?.title}</h1>
                     <div id="description" className=" my-3">
                         <h1 className=" mb-2 text-xl font-semibold">Property Type</h1>
@@ -144,15 +144,15 @@ const PropertyDetails = () => {
                     </div>
                     <div id="description" className=" my-3">
                         <h1 className=" mb-2 text-xl font-semibold">Description</h1>
-                        <p>{data.description}</p>
+                        <p>{data?.description}</p>
                     </div>
                     <div id="description" className=" my-3">
                         <h1 className=" mb-2 text-xl font-semibold">Property Details</h1>
                         <div className=" grid grid-cols-2 gap-3">
-                            <p className="flex  justify-between border-b-2 pb-1 mb-2 pr-4"> <span className="flex gap-2 items-center"><PiBuildingsLight /> Size:</span> <span className=" font-semibold"> {data.square_feet} sqF</span></p>
-                            <p className="flex  justify-between border-b-2 pb-1 mb-2 pr-4"> <span className="flex gap-2 items-center"><IoBedOutline /> Bedrooms</span> <span className=" font-semibold"> {data.bedrooms}</span></p>
-                            <p className="flex  justify-between border-b-2 pb-1 mb-2 pr-4"> <span className="flex gap-2 items-center"><FaBath /> Bathrooms:</span> <span className=" font-semibold"> {data.bathrooms}</span></p>
-                            <p className="flex  justify-between border-b-2 pb-1 mb-2 pr-4"> <span className="flex gap-2 items-center"><PiBuildingsLight /> Year built:</span> <span className=" font-semibold"> {data.year_built}</span></p>
+                            <p className="flex  justify-between border-b-2 pb-1 mb-2 pr-4"> <span className="flex gap-2 items-center"><PiBuildingsLight /> Size:</span> <span className=" font-semibold"> {data?.square_feet} sqF</span></p>
+                            <p className="flex  justify-between border-b-2 pb-1 mb-2 pr-4"> <span className="flex gap-2 items-center"><IoBedOutline /> Bedrooms</span> <span className=" font-semibold"> {data?.bedrooms}</span></p>
+                            <p className="flex  justify-between border-b-2 pb-1 mb-2 pr-4"> <span className="flex gap-2 items-center"><FaBath /> Bathrooms:</span> <span className=" font-semibold"> {data?.bathrooms}</span></p>
+                            <p className="flex  justify-between border-b-2 pb-1 mb-2 pr-4"> <span className="flex gap-2 items-center"><PiBuildingsLight /> Year built:</span> <span className=" font-semibold"> {data?.year_built}</span></p>
 
                         </div>
                     </div>
@@ -243,7 +243,7 @@ const PropertyDetails = () => {
                     <div className=" border p-3 mb-4 ">
                         <div className="flex justify-between border-b-2 pb-3">
                             <h1 className="font-bold text-xl">Price:</h1>
-                            <h1 className="font-bold text-xl">{data.price_range} $</h1>
+                            <h1 className="font-bold text-xl">${data?.min_price}-${data?.max_price}</h1>
                         </div>
                         <div className="flex justify-between mt-3">
                             <Link><button  onClick={()=>handelWishList()} className="flex gap-1 items-center hover:text-red-600"> <GoStar /> Add to Wishlist</button></Link>
@@ -255,11 +255,11 @@ const PropertyDetails = () => {
                     <div className=" border p-3 mb-4 bg-[#9ca1a5b8]">
                         <div className=" flex gap-3">
                             <div className="w-3/12">
-                                <img className="w-full rounded-md" src={data.agent_photo} alt="" />
+                                <img className="w-full rounded-md" src={data?.agent_photo} alt="" />
                             </div>
                             <div>
                                 <p>NEW HOME</p>
-                                <h1 className="text-xl font-semibold">{data.agent_name}</h1>
+                                <h1 className="text-xl font-semibold">{data?.agent_name}</h1>
                             </div>
                         </div>
                         <p className="flex  justify-between border-b-2 border-t-2 mt-6 pb-1 mb-2 pr-4"> <span className="flex gap-2 items-center"><FaMobile /> Office Phone:</span> <span className=" font-semibold"> +0562566887</span></p>
