@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxios from "../../../CustomHocks/useAxios";
 import useUser from "../../../CustomHocks/useUser";
 import LoadingRing from "../../../SharedComponents/LoadingRing/LoadingRing";
@@ -20,20 +20,34 @@ const RequestedProperty = () => {
         }
     })
 
-    const handelVerificationStatus = async (id, vStatus) => {
-       
-        const res = await axiosSecure.patch(`/offeredProperty/status/${id}`, vStatus)
-        if(res.data.modifiedCount>0){
-            refetch()
-            console.log(id, vStatus);
-          vStatus.verification_status==='accepted' ? toast.success('Offer Accepted'):toast.error('Offer Rejected')
+    const requestedPropertyMutation = useMutation({
+        mutationFn: async ({id, vStatus}) => {
+            console.log(vStatus);
+            const res = await axiosSecure.patch(`/offeredProperty/status/${id}`, vStatus)
+            return res.data
         }
-        
-       
+    })
 
+
+    const handelVerificationStatus = async (id, vStatus) => {
+        
+
+        requestedPropertyMutation.mutate({id,vStatus},{
+            onSuccess:async()=>{
+                refetch()
+              vStatus.verification_status==='accepted' ? toast.success('Offer Accepted'):toast.error('Offer Rejected')
+            }
+        })
+       
+        // const res = await axiosSecure.patch(`/offeredProperty/status/${id}`, vStatus)
+        // if(res.data.modifiedCount>0){
+        //     refetch()
+        //     console.log(id, vStatus);
+        //   vStatus.verification_status==='accepted' ? toast.success('Offer Accepted'):toast.error('Offer Rejected')
+        // }
+      
     }
 
-    console.log(data);
     const handelAccept = (id) => {
         const vStatus = { verification_status: 'accepted' }
         handelVerificationStatus(id, vStatus)

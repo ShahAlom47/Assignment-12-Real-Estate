@@ -5,6 +5,7 @@ import useAxios from "../../../CustomHocks/useAxios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import useUserRole from "../../../CustomHocks/useUserRole";
+import { useMutation } from "@tanstack/react-query";
 
 
 const AddProperty = () => {
@@ -16,6 +17,13 @@ const AddProperty = () => {
     const navigate = useNavigate()
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
+    const addPropertyMutation = useMutation({
+        mutationFn: async (propertyData) => {
+            const res = await axiosSecure.post('/addProperty', propertyData)
+            return res.data
+        }
+    })
 
 
     const onSubmit = async (data) => {
@@ -49,28 +57,48 @@ const AddProperty = () => {
                 year_built: data.year_built,
             }
 
-            const response = await axiosSecure.post('/addProperty', propertyData)
-            if (response.data.insertedId) {
-                reset();
-                Swal.fire({
-                    title: "Added property successfully",
+            addPropertyMutation.mutate(propertyData,{
+                onSuccess:async()=>{
+                    reset();
+                        Swal.fire({
+                            title: "Added property successfully",
+        
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "My Added Property"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                navigate('/dashBoard/myAddedProperty')
+                            }
+                        });
+        
+                }
+            })
 
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "My Added Property"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        navigate('/dashBoard/myAddedProperty')
-                    }
-                });
-
-            }
 
 
-            console.log(propertyData);
+            // const response = await axiosSecure.post('/addProperty', propertyData)
+            // if (response.data.insertedId) {
+            //     reset();
+            //     Swal.fire({
+            //         title: "Added property successfully",
+
+            //         showCancelButton: true,
+            //         confirmButtonColor: "#3085d6",
+            //         cancelButtonColor: "#d33",
+            //         confirmButtonText: "My Added Property"
+            //     }).then((result) => {
+            //         if (result.isConfirmed) {
+            //             navigate('/dashBoard/myAddedProperty')
+            //         }
+            //     });
+
+            // }
+
+
+       
         }
-        // console.log(res);
 
     }
 
@@ -113,7 +141,7 @@ const AddProperty = () => {
                             <input  {...register("bathrooms", { required: true })} type="number" placeholder="Bathrooms" className={` outline-none w-full `} />
                         </label>
                         <label className={`input input-bordered flex items-center   gap-2 w-full  `}>
-                            <input  {...register("bedrooms", { required: true })} type="number" placeholder="Bathrooms " className={` outline-none w-full `} />
+                            <input  {...register("bedrooms", { required: true })} type="number" placeholder="Bedrooms " className={` outline-none w-full `} />
                         </label>
 
                     </div>

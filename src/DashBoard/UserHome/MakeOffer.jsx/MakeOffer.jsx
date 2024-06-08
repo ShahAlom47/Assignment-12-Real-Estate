@@ -9,7 +9,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
 import LoadingRing from "../../../SharedComponents/LoadingRing/LoadingRing";
-import { minTime } from "date-fns/constants";
+
 
 
 
@@ -25,7 +25,7 @@ const MakeOffer = () => {
     const { id } = useParams();
     const { user } = useUser()
     const axiosSecure = useAxios()
-    const { data, isLoading } = useQuery({
+    const { data } = useQuery({
         queryKey: ['makeOffer'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/property/${id}`)

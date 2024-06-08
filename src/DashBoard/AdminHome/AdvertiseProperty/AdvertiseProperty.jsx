@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet";
 import LoadingRing from "../../../SharedComponents/LoadingRing/LoadingRing";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxios from "../../../CustomHocks/useAxios";
 import { ResponsiveTable } from "responsive-table-react";
 import Swal from "sweetalert2";
@@ -16,18 +16,26 @@ const AdvertiseProperty = () => {
         }
     });
 
-    console.log(data);
+    const advertiseMutation = useMutation({
+        mutationFn: async ({item}) => {
+            const res = await axiosSecure.post(`/addAdvertise`,item)
+            return res.data
+        }
+    })
 
     const handelAdvertise= async (item) =>{
 
-       const res = await axiosSecure.post(`/addAdvertise`,item)
+        advertiseMutation.mutate({item},{
+            onSuccess:async(data)=>{
+                if (data?.insertedId) {
+                    Swal.fire('Successfully added property');
+                } else if (data.message === 'Property already exists') {
+                    Swal.fire('Property already exists');
+                }
 
-       if(res.data?.insertedId){
-        Swal.fire('Successfully added property ')
-       }
+            }})
 
-       else if(res.data.message==='Property already exists')
-        Swal.fire('Property already exists')
+
 
     }
 

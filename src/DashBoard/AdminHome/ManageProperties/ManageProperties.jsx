@@ -1,5 +1,5 @@
 
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxios from "../../../CustomHocks/useAxios";
 import LoadingRing from "../../../SharedComponents/LoadingRing/LoadingRing";
 import { ResponsiveTable } from "responsive-table-react";
@@ -21,15 +21,24 @@ const ManageProperties = () => {
         }
     });
 
-    console.log(data);
+    const managePropertyMutation = useMutation({
+        mutationFn: async ({id,status}) => {
+            const res = await axiosSecure.patch(`/property/admin/verify/${id}`,{status})
+            return res.data
+        }
+    })
 
     const handelStatus = async (id, status) => {
-        const res = await axiosSecure.patch(`/property/admin/verify/${id}`,{status})
-        console.log(res.data);
-        if(res.data?.modifiedCount>0){
-            refetch()
-            Swal.fire(`Property ${status}  `)
-        }
+
+        managePropertyMutation.mutate({id,status},{
+            onSuccess:async()=>{
+                refetch()
+                Swal.fire(`Property ${status}  `)
+
+            }})
+
+
+       
 
     }
 

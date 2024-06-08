@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxios from "../../../CustomHocks/useAxios";
 import LoadingRing from "../../../SharedComponents/LoadingRing/LoadingRing";
 import { ResponsiveTable } from "responsive-table-react";
@@ -15,7 +15,15 @@ const ManageUser = () => {
         }
     });
 
-    console.log(data);
+    const manageUserMutation = useMutation({
+        mutationFn: async ({id, role}) => {
+            const res = await axiosSecure.patch(`/user/admin/role/${id}`, { role })
+            return res.data
+        }
+    })
+
+
+
 
     const handelUserRole = async (id, role) => {
 
@@ -29,16 +37,19 @@ const ManageUser = () => {
             confirmButtonText: "Yes"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const res = await axiosSecure.patch(`/user/admin/role/${id}`, { role })
-                console.log(res.data);
-                if (res.data?.modifiedCount > 0) {
-                    refetch()
-                    Swal.fire({
-                        title: "Changed",
-                        text: "User role updated success",
-                        icon: "success"
-                    });
-                }
+
+                manageUserMutation.mutate({id, role},{
+                    onSuccess:async()=>{
+                        refetch()
+                            Swal.fire({
+                                title: "Changed",
+                                text: "User role updated success",
+                                icon: "success"
+                            });
+        
+                    }})
+
+
             }
         });
 
