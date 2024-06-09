@@ -48,7 +48,7 @@ const PropertyDetails = () => {
     })
 
 
-   
+
 
     useEffect(() => {
         setReviewErr(false)
@@ -151,11 +151,11 @@ const PropertyDetails = () => {
                 <title>Honest | Details Page </title>
             </Helmet>
             <ToastContainer />
-            <div className=" h-[512px] flex gap-5 my-5">
-                <div className="h-[512px] ">
-                    <img className=" h-full" src={data?.property_image} alt="" />
+            <div className="  my-5">
+                <div className="">
+                    <img className="w-full h-full" src={data?.property_image} alt="" />
                 </div>
-                <div className=" flex w-1/2  gap-3 h-[512px]">
+                {/* <div className=" flex w-1/2  gap-3 lg:h-[512px]">
                     <div className="space-y-3 flex-grow h-[500px] ">
                         <div className=" h-1/2"><img className=" h-full" src={data?.property_image} alt="" /></div>
                         <div className="h-1/2"><img className=" h-full" src={data?.property_image} alt="" /></div>
@@ -164,12 +164,12 @@ const PropertyDetails = () => {
                         <div className="h-1/2"><img className=" h-full" src={data?.property_image} alt="" /></div>
                         <div className="h-1/2"><img className=" h-full" src={data?.property_image} alt="" /></div>
                     </div>
-                </div>
+                </div> */}
 
             </div>
 
 
-            <section className=" flex gap-5 ">
+            <section className=" lg:flex gap-5 ">
                 <div className=" flex-1" >
                     <p className="inline bg-gray-300 bg-opacity-50 backdrop-filter backdrop-blur-md"> {data?.verification_status}</p>
                     <h1 className="my-2 text-3xl font-semibold">{data?.title}</h1>
@@ -242,39 +242,42 @@ const PropertyDetails = () => {
 
                     </div>
 
+                    {/* modal */}
+
+
+
+                    <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                        <div className="modal-box">
+
+                            <form onSubmit={handelReviewForm}>
+                                <label className="form-control w-full ">
+                                    <span className="label-text font-semibold"> Review</span>
+                                </label>
+                                <textarea className="border-2 w-full " placeholder="Review" rows={5} name="review" id=""></textarea>
+                                <label className="form-control w-full mb-3">
+                                    <span className="label-text font-semibold"> * Rating:</span>
+                                    <input type="number" name="rating" max={5} min={1} placeholder="Rating" className="input input-bordered w-full rounded-sm" />
+                                </label>
+                                <input type="submit" className=" bg-green-500 btn btn-sm w-full" value="Review" />
+                            </form>
+                            <div className="modal-action w-full">
+                                <form method="dialog" className="w-full rounded-sm">
+                                    <button className="btn btn-sm w-full rounded-sm">Close</button>
+                                </form>
+                            </div>
+                        </div>
+                    </dialog>
+
+
                 </div>
 
-                {/* modal */}
 
-
-
-                <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-                    <div className="modal-box">
-
-                        <form onSubmit={handelReviewForm}>
-                            <label className="form-control w-full ">
-                                <span className="label-text font-semibold"> Review</span>
-                            </label>
-                            <textarea className="border-2 w-full " placeholder="Review" rows={5} name="review" id=""></textarea>
-                            <label className="form-control w-full mb-3">
-                                <span className="label-text font-semibold"> * Rating:</span>
-                                <input type="number" name="rating" max={5} min={1} placeholder="Rating" className="input input-bordered w-full rounded-sm" />
-                            </label>
-                            <input type="submit" className=" bg-green-500 btn btn-sm w-full" value="Review" />
-                        </form>
-                        <div className="modal-action w-full">
-                            <form method="dialog" className="w-full rounded-sm">
-                                <button className="btn btn-sm w-full rounded-sm">Close</button>
-                            </form>
-                        </div>
-                    </div>
-                </dialog>
 
 
                 {/* -----------------------------------------
                 ASIDE
                 --------------------------------------------- */}
-                <aside className=" w-4/12  p-3">
+                <aside className=" lg:w-4/12  p-3">
                     <div className=" border p-3 mb-4 ">
                         <div className="flex justify-between border-b-2 pb-3">
                             <h1 className="font-bold text-xl">Price:</h1>
@@ -300,7 +303,7 @@ const PropertyDetails = () => {
                         <p className="flex  justify-between border-b-2 border-t-2 mt-6 pb-1 mb-2 pr-4"> <span className="flex gap-2 items-center"><FaMobile /> Office Phone:</span> <span className=" font-semibold"> +0562566887</span></p>
                         <p className="flex  justify-between border-b-2   pb-1 mb-2 pr-4"> <span className="flex gap-2 items-center"><FaMobile /> Phone:</span> <span className=" font-semibold"> +0562596833</span></p>
                         <p className="flex  justify-between border-b-2 pb-1 mb-2 pr-4"> <span className="flex gap-2 items-center"><FaVoicemail /> Email:</span> <span className=" font-semibold lowercase">{data.agent_name}@gmail.com</span></p>
-                        <Link><button className=" btn rounded-sm my-3 bg-yellow-500 w-full border-none">View My Property </button></Link>
+                        <Link to={`/viewMyProperty/${data.agent_email}`}><button className=" btn rounded-sm my-3 bg-yellow-500 w-full border-none"> View My Property </button></Link>
                     </div>
 
                 </aside>

@@ -62,8 +62,8 @@ const Navbar = () => {
     const nav = <>
         <NavLink><li>HOME</li></NavLink>
         <NavLink to={'/allProperty'}><li>ALL PROPERTY</li></NavLink>
-        <NavLink><li>ABOUT US</li></NavLink>
-        <NavLink><li>CONTACT US</li></NavLink>
+        <NavLink to={'/aboutUs'}><li>ABOUT US</li></NavLink>
+        <NavLink to={'/contactUs'}><li>CONTACT US</li></NavLink>
     </>
 
     const dashNav = <>

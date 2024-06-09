@@ -6,9 +6,9 @@ Welcome to HONEST Real Estate, a comprehensive web application for buying and se
 
 [Live Demo Link](https://assignment-12-e88ce.web.app)
 
-- **Admin Info
+- Admin Info
 
-Email:admin@gmail.com
+Email:admin@gmail.com.
 pass:123456A@
 
 

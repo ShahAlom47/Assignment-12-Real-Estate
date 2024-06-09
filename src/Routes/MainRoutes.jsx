@@ -31,6 +31,9 @@ import ManageUser from "../DashBoard/AdminHome/ManageUser/ManageUser";
 import ManageReview from "../DashBoard/AdminHome/ManageReview/ManageReview";
 import MySoldProperty from "../DashBoard/AgentHome/MySoldProperty/MySoldProperty";
 import AdvertiseProperty from "../DashBoard/AdminHome/AdvertiseProperty/AdvertiseProperty";
+import AboutUs from "../Pages/AboutUs/AboutUs";
+import ContactUs from "../Pages/ContactUs/ContactUs";
+import ViewMyProperty from "../Pages/ViewMyProperty/ViewMyProperty";
 
 
 
@@ -51,6 +54,18 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/aboutUs",
+        element: <AboutUs></AboutUs>,
+      },
+      {
+        path: "/contactUs",
+        element: <ContactUs></ContactUs>,
+      },
+      {
+        path: "/viewMyProperty/:email",
+        element: <PrivetRouter><ViewMyProperty></ViewMyProperty></PrivetRouter>,
       },
       {
         path: "/details/:id",

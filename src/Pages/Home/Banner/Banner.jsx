@@ -47,7 +47,7 @@ const Banner = () => {
                 <div className='relative'>
                     <img className='lg:h-[600px] gradient-overlay w-full rounded-lg' src={slide1} alt="" />
                     <div className="flex items-center  overlay text-white absolute bottom-1 md:bottom-0 lg:bottom-0 left-0 z-40 lg:p-0 p-0 w-full h-full rounded-md" style={{ background: "linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0))" }}>
-                        <div className=' inline-block m-[10%]'>
+                        <div className=' inline-block m-[10%] p-3'>
                             <h4 className=' font-bold text-xl'>FIND YOUR</h4>
                             <h1 className=' font-bold  lg:text-7xl md:text-6xl text-5xl'>DREAM <br /> HOUSE</h1>
                             <Link to={'/allProperty'}><button className=' btn btn-sm rounded-sm px-5 border-none my-3 text-xl bg-[#f29735]'>Explore</button></Link>
@@ -60,7 +60,7 @@ const Banner = () => {
                 <div className='relative'>
                     <img className='lg:h-[600px] w-full rounded-lg' src={slide2} alt="" />
                     <div className="flex items-center  overlay text-white absolute bottom-1 md:bottom-0 lg:bottom-0 left-0 z-40 lg:p-0 p-0 w-full h-full rounded-md" style={{ background: "linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0))" }}>
-                        <div className=' inline-block m-[10%]'>
+                        <div className=' inline-block m-[10%] p-3'>
                             <h4 className='font-bold text-xl'>FIND THE</h4>
                             <h1 className=' font-bold  lg:text-7xl md:text-6xl text-5xl'>DREAM <br /> HOUSE</h1>
                             <Link to={'/allProperty'}><button className=' btn btn-sm rounded-sm px-5 border-none my-3 text-xl bg-[#f29735]'>Explore</button></Link>
@@ -73,7 +73,7 @@ const Banner = () => {
                 <div className='relative'>
                     <img className='lg:h-[600px] w-full rounded-lg' src={slide4} alt="" />
                     <div className="flex items-center  overlay text-white absolute bottom-1 md:bottom-0 lg:bottom-0 left-0 z-40 lg:p-0 p-0 w-full h-full rounded-md" style={{ background: "linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0))" }}>
-                        <div className=' inline-block m-[10%]'>
+                        <div className=' inline-block m-[10%] p-3'>
                             <h4 className='font-bold text-xl'>DISCOVER YOUR</h4>
                             <h1 className=' font-bold  lg:text-7xl md:text-6xl text-5xl'>DREAM <br /> HOUSE</h1>
                             <Link to={'/allProperty'}><button className=' btn btn-sm rounded-sm px-5 border-none my-3 text-xl bg-[#f29735]'>Explore</button></Link>
@@ -86,7 +86,7 @@ const Banner = () => {
                 <div className='relative'>
                     <img className='lg:h-[600px] w-full rounded-lg' src={slide3} alt="" />
                     <div className="flex items-center  overlay text-white absolute bottom-1 md:bottom-0 lg:bottom-0 left-0 z-40 lg:p-0 p-0 w-full h-full rounded-md" style={{ background: "linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0))" }}>
-                        <div className=' inline-block m-[10%]'>
+                        <div className=' inline-block m-[10%] p-3'>
                             <h4 className='font-bold text-xl'>EXPLORE YOUR</h4>
                             <h1 className=' font-bold  lg:text-7xl md:text-6xl text-5xl'>DREAM <br /> HOUSE</h1>
                             <Link to={'/allProperty'}><button className=' btn btn-sm rounded-sm px-5 border-none my-3 text-xl bg-[#f29735]'>Explore</button></Link>
