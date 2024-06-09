@@ -3,10 +3,11 @@ import { NavLink, Outlet } from "react-router-dom";
 import useUser from "../CustomHocks/useUser";
 import useUserRole from "../CustomHocks/useUserRole";
 import { TbJewishStar } from "react-icons/tb";
-import { MdBookmarkAdded, MdDomainAdd, MdOutlineAssessment, MdOutlineSell } from "react-icons/md";
+import { MdBookmarkAdded, MdDomainAdd, MdManageAccounts, MdOutlineAssessment, MdOutlinePermDataSetting, MdOutlineSell } from "react-icons/md";
 import { VscPreview } from "react-icons/vsc";
 import { CiSquareQuestion } from "react-icons/ci";
 import { Helmet } from "react-helmet";
+import { RiAdvertisementLine, RiChatSettingsLine } from "react-icons/ri";
 
 
 
@@ -46,23 +47,23 @@ const DashBoard = () => {
                             </NavLink>
                             <NavLink to={'/dashBoard/manageProperties'}>
                                 <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
-                                    <FaHome /> Manage Properties
+                                <MdOutlinePermDataSetting /> Manage Properties
                                 </button>
                             </NavLink>
                             <NavLink to={'/dashBoard/manageUser'}>
                                 <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
-                                    <FaHome /> Manage User
+                                <MdManageAccounts /> Manage User
                                 </button>
                             </NavLink>
                            
                             <NavLink to={'/dashBoard/manageReview'}>
                                 <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
-                                    <FaHome /> Manage Review
+                                <RiChatSettingsLine /> Manage Review
                                 </button>
                             </NavLink>
                             <NavLink to={'/dashBoard/advertise'}>
                                 <button className="flex items-center gap-2 hoverBtn hover:text-white font-semibold">
-                                    <FaHome />Advertise Property
+                                <RiAdvertisementLine /> Advertise Property
                                 </button>
                             </NavLink>
                         </div>
