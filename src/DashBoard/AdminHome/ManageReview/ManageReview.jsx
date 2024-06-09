@@ -61,7 +61,7 @@ const ManageReview = () => {
                 <title>HONEST || Dashboard || Manage Review</title>
             </Helmet>
             <div className="border-b-2 pb-3 flex justify-between">
-                <h1 className="text-3xl font-bold">Manage User</h1>
+                <h1 className="text-3xl font-bold">Manage Review</h1>
                 <h1 className="text-xl font-bold">Total: {data?.length} </h1>
 
             </div>

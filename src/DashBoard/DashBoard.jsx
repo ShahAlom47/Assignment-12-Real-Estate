@@ -6,6 +6,7 @@ import { TbJewishStar } from "react-icons/tb";
 import { MdBookmarkAdded, MdDomainAdd, MdOutlineAssessment, MdOutlineSell } from "react-icons/md";
 import { VscPreview } from "react-icons/vsc";
 import { CiSquareQuestion } from "react-icons/ci";
+import { Helmet } from "react-helmet";
 
 
 
@@ -25,6 +26,9 @@ const DashBoard = () => {
 
     return (
         <div className=" lg:flex   max-w">
+            <Helmet>
+                <title>HONEST || Dashboard</title>
+            </Helmet>
             
 
             <div className="p-10 lg:w-3/12 lg:min-h-screen  bg-[#997743]">

@@ -65,7 +65,7 @@ const RequestedProperty = () => {
         <div className="p-8">
             <ToastContainer></ToastContainer>
             <div className="border-b-2 pb-3">
-                <h1 className="text-3xl font-bold">Edit Property</h1>
+                <h1 className="text-3xl font-bold">Requested Property</h1>
             </div>
 
             {

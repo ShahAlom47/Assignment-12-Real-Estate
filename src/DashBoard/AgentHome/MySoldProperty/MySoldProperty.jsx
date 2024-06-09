@@ -65,7 +65,7 @@ const MySoldProperty = () => {
            <title>HONEST || Dashboard || Sold Property</title>
        </Helmet>
        <div className="border-b-2 pb-3">
-           <h1 className="text-3xl font-bold">Manage Properties</h1>
+           <h1 className="text-3xl font-bold">Sold Properties</h1>
            <h1 className="text-lg my-3 font-bold">Total sold Amount: $ {totalPrice}</h1>
        </div>
 

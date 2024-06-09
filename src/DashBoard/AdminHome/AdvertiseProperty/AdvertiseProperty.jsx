@@ -84,7 +84,7 @@ const AdvertiseProperty = () => {
            <title>HONEST || Dashboard || Advertise Property</title>
        </Helmet>
        <div className="border-b-2 pb-3">
-           <h1 className="text-3xl font-bold">Manage Properties</h1>
+           <h1 className="text-3xl font-bold">Advertise Properties</h1>
        </div>
 
        {
