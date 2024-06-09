@@ -29,7 +29,7 @@ pass:123456A@
   - **Admin Dashboard**: Manage users, assign roles, and handle property verification.
 - **Property Management**: Agents can add, edit, and manage their properties.
 - **Fraud Prevention**: Ability to remove agents in case of fraud.
-- **Responsive Design**: Optimized for both desktop and mobile devices.
+- **Responsive Design**: Optimized for both desktop,tab and mobile devices.
 - **Advertising Section**: Highlight verified best properties for easy access.
 - **Request Management**: Agents can view and manage property requests in a tabular format.
 - **Secure Payment Gateway**: Users can make payments for properties via a secure gateway.
