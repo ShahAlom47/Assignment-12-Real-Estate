@@ -1,6 +1,9 @@
 # HONEST Real Estate
 
 HONEST Real Estate is a modern web app for real estate, providing a robust platform for buyers, sellers, and agents. It streamlines transactions and enhances user engagement with intuitive features and secure processes.
+## Live Demo
+ [HONEST Real Estate Demo](https://assignment-12-e88ce.web.app/)
+
 
 ## Features
 
