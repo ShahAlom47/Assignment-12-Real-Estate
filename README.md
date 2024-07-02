@@ -1,6 +1,6 @@
 # HONEST Real Estate
 
-HONEST Real Estate is a modern web application designed for the real estate industry, offering a robust platform for property buyers, sellers, and agents. The project aims to streamline property transactions and enhance user engagement through intuitive features and secure processes.
+HONEST Real Estate is a modern web app for real estate, providing a robust platform for buyers, sellers, and agents. It streamlines transactions and enhances user engagement with intuitive features and secure processes.
 
 ## Features
 
@@ -9,8 +9,6 @@ HONEST Real Estate is a modern web application designed for the real estate indu
 - **Role-Based Dashboards**: Separate dashboards for Users, Agents, and Admins with tailored functionalities.
 
 ## Technologies Used
-
-The project utilizes the following technologies:
 
 - **Frontend**: React, Tailwind CSS, DaisyUI
 - **Backend**: Firebase (Authentication, Firestore), Node.js (Express.js)
@@ -29,14 +27,11 @@ To clone and run the project locally, follow these steps:
 
 3. **Set Up Firebase:**
    - Create a Firebase project at [Firebase Console](https://console.firebase.google.com/)
-   - Obtain Firebase config credentials and update `.env` file:
+   - Obtain Firebase config credentials and update `.env` file.
+4. **Set Up MongoDB:**
+   - Ensure MongoDB is installed and running locally or use a cloud-hosted service.
+   - Configure MongoDB connection URI in the appropriate environment file:
+     ```
+     MONGODB_URI=your_mongodb_uri
+     ```
 
-4. **Start the Application:**
-   - `npm start`
-
-5. **Access the Application:**
-   - Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Conclusion
-
-HONEST Real Estate aims to revolutionize the real estate market by providing a user-friendly platform for property transactions with enhanced security and usability. For any issues or queries, please contact us at admin@gmail.com.
